@@ -55,21 +55,12 @@
     <loc>/reference/is_valid_spreadsheet.html</loc>
   </url>
   <url>
+    <loc>/reference/read_data_configuration.html</loc>
+  </url>
+  <url>
     <loc>/reference/read_spreadsheet_data.html</loc>
   </url>
   <url>
-    <loc>/reference/template_action_expectation_data.html</loc>
-  </url>
-  <url>
-    <loc>/reference/template_feature_data.html</loc>
-  </url>
-  <url>
-    <loc>/reference/template_site_data.html</loc>
-  </url>
-  <url>
-    <loc>/reference/template_site_status_data.html</loc>
-  </url>
-  <url>
-    <loc>/reference/whatdata.html</loc>
+    <loc>/reference/whatdataio.html</loc>
   </url>
 </urlset>

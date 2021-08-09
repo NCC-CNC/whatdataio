@@ -5,15 +5,15 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Import and export management action data • whatdata</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<title>Import and export management action data • whatdataio</title>
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Import and export management action data">
 <meta property="og:description" content="
- This package provides functions for importing and exporting management action data. It is specifically designed to be used with the What To Do and What Template Maker applications.">
+  This package provides functions for importing and exporting management action data. It provides consistent data format standards for the What To Do] and What Template Maker web applications. It is not designed for general purpose use outside of these applications.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -33,7 +33,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">whatdata</a>
+        <a class="navbar-link" href="index.html">whatdataio</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.99999</span>
       </span>
     </div>
@@ -66,23 +66,23 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="whatdata-import-and-export-management-action-data" class="section level2">
+<div id="whatdataio-import-and-export-management-action-data" class="section level2">
 <h2 class="hasAnchor">
-<a href="#whatdata-import-and-export-management-action-data" class="anchor" aria-hidden="true"></a>whatdata: Import and export management action data</h2>
+<a href="#whatdataio-import-and-export-management-action-data" class="anchor" aria-hidden="true"></a>whatdataio: Import and export management action data</h2>
 
 <div id="overview" class="section level3">
 <h3 class="hasAnchor">
 <a href="#overview" class="anchor" aria-hidden="true"></a>Overview</h3>
-<p>The <em>whatdata R</em> package provides functions for importing and exporting management action data. It provides consistent data format standards for the <a href="https://github/NCC-CNC/whattodo" class="external-link">What To Do</a> and <a href="https://github/NCC-CNC/whattemplatemaker" class="external-link">What Template Maker</a> web applications. It is not designed for general purpose use outside of these applications.</p>
+<p>The <em>whatdataio R</em> package provides functions for importing and exporting management action data. It provides consistent data format standards for the <a href="https://github/NCC-CNC/whattodo" class="external-link">What To Do</a> and <a href="https://github/NCC-CNC/whattemplatemaker" class="external-link">What Template Maker</a> web applications. It is not designed for general purpose use outside of these applications.</p>
 </div>
 <div id="installation" class="section level3">
 <h3 class="hasAnchor">
 <a href="#installation" class="anchor" aria-hidden="true"></a>Installation</h3>
-<p>The package is only available from an <a href="https://github.com/NCC-CNC/whatdata" class="external-link">online coding repository</a>. To install it, use the following R code.</p>
+<p>The package is only available from an <a href="https://github.com/NCC-CNC/whatdataio" class="external-link">online coding repository</a>. To install it, use the following R code.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span><span class="op">)</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"NCC-CNC/whatdata"</span><span class="op">)</span></code></pre></div>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"NCC-CNC/whatdataio"</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
   </div>
@@ -109,8 +109,10 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Jeffrey O Hanson <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-4716-6134" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>Richard Schuster <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0003-3191-7869" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>
+<a href="https://jeffrey-hanson.com">Jeffrey O Hanson</a> <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-4716-6134" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>
+<a href="http://www.richard-schuster.com">Richard Schuster</a> <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0003-3191-7869" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
 
@@ -118,6 +120,10 @@
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://www.tidyverse.org/lifecycle/experimental" class="external-link"><img src="https://img.shields.io/badge/Lifecycle-experimental-orange.svg" alt="lifecycle"></a></li>
+<li><a href="https://github.com/NCC-CNC/whatdataio/actions" class="external-link"><img src="https://img.shields.io/github/workflow/status/NCC-CNC/whatdataio/Ubuntu/master.svg?label=Ubuntu" alt="R-CMD-check-Ubuntu"></a></li>
+<li><a href="https://github.com/NCC-CNC/whatdataio/actions" class="external-link"><img src="https://img.shields.io/github/workflow/status/NCC-CNC/whatdataio/Windows/master.svg?label=Windows" alt="R-CMD-check-Windows"></a></li>
+<li><a href="https://github.com/NCC-CNC/whatdataio/actions" class="external-link"><img src="https://img.shields.io/github/workflow/status/NCC-CNC/whatdataio/Mac%20OSX/master.svg?label=Mac%20OSX" alt="R-CMD-check-Mac-OSX"></a></li>
+<li><a href="https://codecov.io/github/NCC-CNC/whatdataio?branch=master" class="external-link"><img src="https://codecov.io/github/NCC-CNC/whatdataio/coverage.svg?branch=master" alt="Coverage Status"></a></li>
 </ul>
 </div>
 
@@ -127,7 +133,7 @@
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by Jeffrey O Hanson, Richard Schuster.</p>
+<p>Developed by <a href="https://jeffrey-hanson.com" class="external-link">Jeffrey O Hanson</a>, <a href="http://www.richard-schuster.com" class="external-link">Richard Schuster</a>.</p>
 </div>
 
 <div class="pkgdown">

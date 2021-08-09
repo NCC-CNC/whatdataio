@@ -4,7 +4,7 @@ test_that("expected result", {
   # initialization
   f <- tempfile(fileext = ".xlsx")
   w <- openxlsx::createWorkbook()
-  parameters <- app_parameters()
+  parameters <- read_data_configuration()
   sn <- paste0("s", seq_len(5))
   fn <- paste0("f", seq_len(3))
   an <- paste0("a", seq_len(2))

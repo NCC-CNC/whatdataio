@@ -1,3 +1,3 @@
-# whatdata 0.0.1
+# whatdataio 0.0.1
 
 - Initial package version.

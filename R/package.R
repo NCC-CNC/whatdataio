@@ -1,7 +1,7 @@
 #' @include internal.R
 NULL
 
-#' whatdata: Import and export management action data
+#' whatdataio: Import and export management action data
 #'
 #' The package provides functions for importing and exporting management action
 #' data. It provides consistent data format standards for the
@@ -10,6 +10,6 @@ NULL
 #' applications. It is not designed for general purpose use outside of these
 #' applications.
 #'
-#' @name whatdata
+#' @name whatdataio
 #' @docType package
 NULL

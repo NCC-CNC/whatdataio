@@ -2,7 +2,7 @@ context("format_data")
 
 test_that("format_pu_data", {
   # simulate data
-  parameters <- app_parameters()
+  parameters <- read_data_configuration()
   d <- simulate_data(
     n_sites = 5, n_features = 3, n_actions = 4,  parameters = parameters)
 
@@ -17,7 +17,7 @@ test_that("format_pu_data", {
 
 test_that("format_zone_data", {
   # simulate data
-  parameters <- app_parameters()
+  parameters <- read_data_configuration()
   d <- simulate_data(
     n_sites = 5, n_features = 3, n_actions = 4,  parameters = parameters)
 
@@ -31,7 +31,7 @@ test_that("format_zone_data", {
 
 test_that("format_target_data", {
   # simulate data
-  parameters <- app_parameters()
+  parameters <- read_data_configuration()
   d <- simulate_data(
     n_sites = 5, n_features = 3, n_actions = 4,  parameters = parameters)
 
@@ -45,7 +45,7 @@ test_that("format_target_data", {
 
 test_that("format_weights_data", {
   # simulate data
-  parameters <- app_parameters()
+  parameters <- read_data_configuration()
   d <- simulate_data(
     n_sites = 5, n_features = 3, n_actions = 4,  parameters = parameters)
 
@@ -59,7 +59,7 @@ test_that("format_weights_data", {
 
 test_that("format_locked_data", {
   # simulate data
-  parameters <- app_parameters()
+  parameters <- read_data_configuration()
   d <- simulate_data(
     n_sites = 5, n_features = 3, n_actions = 4,  parameters = parameters)
 
@@ -74,7 +74,7 @@ test_that("format_locked_data", {
 
 test_that("format_results_data", {
   # simulate data
-  parameters <- app_parameters()
+  parameters <- read_data_configuration()
   d <- simulate_data(
     n_sites = 5, n_features = 3, n_actions = 4,  parameters = parameters)
 

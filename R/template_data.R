@@ -9,7 +9,7 @@ NULL
 #'
 #' @return `data.frame` object.
 #'
-#' @export
+#' @noRd
 template_site_data <- function(site_names, action_names, parameters) {
   # assert arguments are valid
   assertthat::assert_that(
@@ -38,7 +38,7 @@ template_site_data <- function(site_names, action_names, parameters) {
 #'
 #' @return `data.frame` object.
 #'
-#' @export
+#' @noRd
 template_site_status_data <- function(site_names, action_names, parameters) {
   # assert arguments are valid
   assertthat::assert_that(
@@ -67,7 +67,7 @@ template_site_status_data <- function(site_names, action_names, parameters) {
 #'
 #' @return `data.frame` object.
 #'
-#' @export
+#' @noRd
 template_feature_data <- function(feature_names, parameters) {
   # assert arguments are valid
   assertthat::assert_that(
@@ -92,7 +92,7 @@ template_feature_data <- function(feature_names, parameters) {
 #'
 #' @return `data.frame` object.
 #'
-#' @export
+#' @noRd
 template_action_expectation_data <- function(
   site_names, feature_names, action_name, parameters) {
   # assert arguments are valid

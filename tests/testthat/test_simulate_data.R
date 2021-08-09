@@ -2,7 +2,7 @@ context("simulate_data")
 
 test_that("expected_result", {
   # data
-  parameters <- app_parameters()
+  parameters <- read_data_configuration()
   d <- simulate_data(
     n_sites = 5, n_features = 3, n_actions = 4,  parameters = parameters)
   # tests

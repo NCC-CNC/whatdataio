@@ -3,7 +3,7 @@ context("create_export_workbook")
 test_that("expected result", {
   # initialization
   f <- tempfile(fileext = ".xlsx")
-  parameters <- app_parameters()
+  parameters <- read_data_configuration()
   d <- simulate_data(5, 4, 3, parameters)
   r <-
   # main code

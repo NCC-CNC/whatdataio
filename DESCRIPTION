@@ -1,9 +1,9 @@
-Package: whatdata
+Package: whatdataio
 Type: Package
 Version: 0.0.0.99999
 Title: Import and export management action data
 Description:
- This package provides functions for importing and exporting management action data. It is specifically designed to be used with the What To Do and What Template Maker applications.
+  This package provides functions for importing and exporting management action data. It provides consistent data format standards for the What To Do] and What Template Maker web applications. It is not designed for general purpose use outside of these applications.
 Authors@R: c(
   person(c('Jeffrey', 'O'), 'Hanson',
     email='jeffrey.hanson@uqconnect.edu.au', role = c('aut', 'cre'),
@@ -35,7 +35,6 @@ Depends:
     R (>= 3.5.0),
 License: GPL-3
 Encoding: UTF-8
-LazyData: true
 Language: en-US
 URL: https://github.com/NCC-CNC/whatdata
 BugReports: https://github.com/NCC-CNC/whatdata/issues
@@ -56,6 +55,7 @@ Collate:
     'has_valid_spreadsheet_data.R'
     'is_valid_spreadsheet.R'
     'package.R'
+    'read_data_configuration.R'
     'read_spreadsheet_data.R'
     'template_data.R'
     'verification.R'

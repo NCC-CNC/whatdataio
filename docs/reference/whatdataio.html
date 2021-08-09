@@ -6,14 +6,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Template site data — template_site_data • whatdata</title>
+<title>whatdataio: Import and export management action data — whatdataio • whatdataio</title>
 
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
@@ -39,8 +39,13 @@
 
 
 
-<meta property="og:title" content="Template site data — template_site_data" />
-<meta property="og:description" content="Create site data for the template workbook." />
+<meta property="og:title" content="whatdataio: Import and export management action data — whatdataio" />
+<meta property="og:description" content="The package provides functions for importing and exporting management action
+data. It provides consistent data format standards for the
+What To Do and
+What Template Maker web
+applications. It is not designed for general purpose use outside of these
+applications." />
 
 
 
@@ -79,7 +84,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">whatdata</a>
+        <a class="navbar-link" href="../index.html">whatdataio</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.99999</span>
       </span>
     </div>
@@ -113,42 +118,22 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Template site data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/NCC-CNC/whatdata/blob/master/R/template_data.R'><code>R/template_data.R</code></a></small>
-    <div class="hidden name"><code>template_site_data.Rd</code></div>
+    <h1>whatdataio: Import and export management action data</h1>
+    <small class="dont-index">Source: <a href='https://github.com/NCC-CNC/whatdata/blob/master/R/package.R'><code>R/package.R</code></a></small>
+    <div class="hidden name"><code>whatdataio.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create site data for the template workbook.</p>
+    <p>The package provides functions for importing and exporting management action
+data. It provides consistent data format standards for the
+<a href='https://github/NCC-CNC/whattodo'>What To Do</a> and
+<a href='https://github/NCC-CNC/whattemplatemaker'>What Template Maker</a> web
+applications. It is not designed for general purpose use outside of these
+applications.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>template_site_data</span><span class='op'>(</span><span class='va'>site_names</span>, <span class='va'>action_names</span>, <span class='va'>parameters</span><span class='op'>)</span></code></pre></div>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>site_names</th>
-      <td><p><code>character</code> names of sites. No missing
-(<code>NA</code>) values are permitted. This object must contain at least one
-name.</p></td>
-    </tr>
-    <tr>
-      <th>action_names</th>
-      <td><p><code>character</code> names of management actions. No missing
-(<code>NA</code>) values are permitted. This object must contain at least one
-name.</p></td>
-    </tr>
-    <tr>
-      <th>parameters</th>
-      <td><p><code>list</code> object containing parameters to customize
-appearance of worksheet.</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p><code>data.frame</code> object.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -161,7 +146,7 @@ appearance of worksheet.</p></td>
 
       <footer>
       <div class="copyright">
-  <p><p>Developed by Jeffrey O Hanson, Richard Schuster.</p></p>
+  <p><p>Developed by <a href="https://jeffrey-hanson.com" class="external-link">Jeffrey O Hanson</a>, <a href="http://www.richard-schuster.com" class="external-link">Richard Schuster</a>.</p></p>
 </div>
 
 <div class="pkgdown">

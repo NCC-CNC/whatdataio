@@ -3,7 +3,7 @@ context("read_spreadsheet_data")
 test_that("expected result", {
   # set parameters
   f <- "testdata/data-template.xlsx"
-  p <- app_parameters()
+  p <- read_data_configuration()
   # read data
   x <- read_spreadsheet_data(f, p)
   # tests

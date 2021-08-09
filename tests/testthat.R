@@ -1,6 +1,6 @@
 # load packages
 library(testthat)
-library(whatdata)
+library(whatdataio)
 
 # run tests
-test_check("whatdata")
+test_check("whatdataio")

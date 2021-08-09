@@ -3,7 +3,7 @@ context("create_template_workbook")
 test_that("expected result", {
   # initialization
   f <- tempfile(fileext = ".xlsx")
-  parameters <- app_parameters()
+  parameters <- read_data_configuration()
   # main code
   w <- create_template_workbook(
     site_names = c("s1", "s2", "s3"),
