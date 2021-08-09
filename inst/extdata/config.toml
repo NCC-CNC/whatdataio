@@ -190,13 +190,3 @@ locked = false
 borderColour = "black"
 borderStyle = "thin"
 border = "TopBottomLeftRight"
-
-[map]
-basemap_name = ["Satellite", "Topographic"]
-basemap_key = ["Esri.WorldImagery", "Esri.WorldTopoMap"]
-# note that color names and codes refer to hard-coded options in leaflet
-# so you can't simply add new colors how ever you like
-defaultColorName = "blue"
-defaultColorCode = "#37a7d9"
-actionColorNames = ["red", "darkred", "lightred", "orange", "beige", "green", "darkgreen", "lightgreen", "blue", "darkblue", "lightblue", "purple", "darkpurple", "pink", "cadetblue", "gray", "lightgray"]
-actionColorCodes = ["#d63e2a", "#a23336", "#ff8e7f", "#ef932f", "#ffc990", "#72af26", "#6e7d22", "#bbf970", "#37a7d9", "#00639f", "#8adaff", "#d152b8", "#5a386a", "#ff90e9", "#436978", "#575757", "#a3a3a3"]
