@@ -1,7 +1,7 @@
 Package: whatdataio
 Type: Package
 Version: 0.0.0.99999
-Title: Import and export management action data
+Title: Import and Export Management Action Data
 Description:
   This package provides functions for importing and exporting management action data. It provides consistent data format standards for the What To Do] and What Template Maker web applications. It is not designed for general purpose use outside of these applications.
 Authors@R: c(
