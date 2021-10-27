@@ -26,6 +26,8 @@ create_template_workbook <- function(
      site_names, action_names, parameters)
    site_status_data <- template_site_status_data(
      site_names, action_names, parameters)
+   site_feasibility_data <- template_site_feasibility_data(
+     site_names, action_names, parameters)
    feature_data <- template_feature_data(
     feature_names, parameters)
    action_expectation_data <- lapply(
@@ -38,9 +40,13 @@ create_template_workbook <- function(
   x <- add_site_data_sheet(
     x, data = site_data, parameters = parameters)
 
-  ## site action status  sheet
+  ## site action status sheet
   x <- add_site_status_sheet(
     x, data = site_status_data, parameters = parameters)
+
+  ## site action feasibility sheet
+  x <- add_site_feasibility_sheet(
+    x, data = site_feasibility_data, parameters = parameters)
 
   ## feature data sheet
   x <- add_feature_data_sheet(
