@@ -1,6 +1,6 @@
 Package: whatdataio
 Type: Package
-Version: 0.0.0.99999
+Version: 1.0.0
 Title: Import and Export Management Action Data
 Description:
   This package provides functions for importing and exporting management action data. It provides consistent data format standards for the What To Do] and What Template Maker web applications. It is not designed for general purpose use outside of these applications.
@@ -39,7 +39,7 @@ Language: en-US
 URL: https://github.com/NCC-CNC/whatdata
 BugReports: https://github.com/NCC-CNC/whatdata/issues
 VignetteBuilder: knitr
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Collate:
     'internal.R'
     'add_action_expectation_sheet.R'
