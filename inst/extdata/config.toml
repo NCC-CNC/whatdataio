@@ -135,39 +135,45 @@ borderStyle = "none"
 # see for options https://www.rdocumentation.org/packages/openxlsx/versions/4.2.3/topics/createStyle
 fontName = "Times New Roman"
 fontSize = 14
-fontColour = "#000063"
+fontColour = "#283b39"
 numFmt = "TEXT"
-bgFill = "#CFCFCF"
-fgFill = "#CFCFCF"
+bgFill = "#7b9d7a"
+fgFill = "#7b9d7a"
 halign = "center"
 valign = "center"
 textDecoration = "bold"
+borderColour = "#283b39"
+borderStyle = "thin"
+border = "TopBottomLeftRight"
 locked = true
 
 [label_style]
 # see for options https://www.rdocumentation.org/packages/openxlsx/versions/4.2.3/topics/createStyle
 fontName = "Times New Roman"
 fontSize = 12
-fontColour = "#000081"
+fontColour = "#283b39"
 numFmt = "TEXT"
-fgFill = "#CFCFCF"
-bgFill = "#CFCFCF"
+fgFill = "#7b9d7a"
+bgFill = "#7b9d7a"
 halign = "center"
 valign = "center"
+borderColour = "#283b39"
+borderStyle = "thin"
+border = "TopBottomLeftRight"
 locked = true
 
 [data_style]
 # see for options https://www.rdocumentation.org/packages/openxlsx/versions/4.2.3/topics/createStyle
 fontName = "Arial"
 fontSize = 12
-fontColour = "#000000"
+fontColour = "#283b39"
 numFmt = "NUMBER"
-fgFill = "#E3E3E3"
-bgFill = "#E3E3E3"
+fgFill = "#e3dcd7"
+bgFill = "#e3dcd7"
 halign = "center"
 valign = "center"
 locked = false
-borderColour = "#000000"
+borderColour = "#283b39"
 borderStyle = "thin"
 border = "TopBottomLeftRight"
 
@@ -175,10 +181,10 @@ border = "TopBottomLeftRight"
 # see for options https://www.rdocumentation.org/packages/openxlsx/versions/4.2.3/topics/createStyle
 fontName = "Arial"
 fontSize = 12
-fontColour = "#5A7C00"
+fontColour = "#115d2f"
 numFmt = "0"
-bgFill = "#9FAA13"
-fgFill = "#9FAA13"
+bgFill = "#4cbc89"
+fgFill = "#4cbc89"
 halign = "center"
 valign = "center"
 locked = false
@@ -190,10 +196,10 @@ border = "TopBottomLeftRight"
 # see for options https://www.rdocumentation.org/packages/openxlsx/versions/4.2.3/topics/createStyle
 fontName = "Arial"
 fontSize = 12
-fontColour = "#C10100"
+fontColour = "#b12f31"
 numFmt = "0"
-bgFill = "#F87D18"
-fgFill = "#F87D18"
+bgFill = "#f96e67"
+fgFill = "#f96e67"
 halign = "center"
 valign = "center"
 locked = false
