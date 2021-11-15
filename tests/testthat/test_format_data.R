@@ -8,7 +8,7 @@ test_that("format_pu_data", {
 
   # format data
   f <- format_pu_data(
-    d$site_names, d$feature_names, d$action_names,
+    d$site_ids, d$feature_ids, d$action_ids,
     d$site_data, d$action_expectation_data, parameters)
 
   # run tests
@@ -23,7 +23,7 @@ test_that("format_zone_data", {
 
   # format data
   f <- format_zone_data(
-    d$site_names, d$feature_names, d$action_names, parameters)
+    d$site_ids, d$feature_ids, d$action_ids, parameters)
 
   # run tests
   expect_true(inherits(f, "ZonesCharacter"))
@@ -37,7 +37,7 @@ test_that("format_target_data", {
 
   # format data
   f <- format_target_data(
-    d$site_names, d$feature_names, d$action_names, d$feature_data, parameters)
+    d$site_ids, d$feature_ids, d$action_ids, d$feature_data, parameters)
 
   # run tests
   expect_true(inherits(f, "data.frame"))
@@ -51,7 +51,7 @@ test_that("format_weights_data", {
 
   # format data
   f <- format_weights_data(
-    d$site_names, d$feature_names, d$action_names, d$feature_data, parameters)
+    d$site_ids, d$feature_ids, d$action_ids, d$feature_data, parameters)
 
   # run tests
   expect_true(inherits(f, "data.frame"))
@@ -65,7 +65,7 @@ test_that("format_locked_data", {
 
   # format data
   f <- format_locked_data(
-      d$site_names, d$feature_names, d$action_names, d$site_status_data,
+      d$site_ids, d$feature_ids, d$action_ids, d$site_status_data,
       parameters)
 
   # run tests
@@ -80,24 +80,24 @@ test_that("format_results_data", {
 
   # format data for prioritization
   pu_data <- format_pu_data(
-    d$site_names, d$feature_names, d$action_names,
+    d$site_ids, d$feature_ids, d$action_ids,
     d$site_data, d$action_expectation_data, parameters)
   zone_data <- format_zone_data(
-    d$site_names, d$feature_names, d$action_names, parameters)
+    d$site_ids, d$feature_ids, d$action_ids, parameters)
   target_data <- format_target_data(
-    d$site_names, d$feature_names, d$action_names, d$feature_data, parameters)
+    d$site_ids, d$feature_ids, d$action_ids, d$feature_data, parameters)
 
   # create solution data
   solution <- pu_data
-  status <- sample(d$action_names, length(d$site_names), replace = TRUE)
-  for (i in seq_along(d$action_names)) {
-    n <- paste0("solution_1_", d$action_names[i])
-    solution[[n]] <- as.numeric(status == d$action_names[i])
+  status <- sample(d$action_ids, length(d$site_ids), replace = TRUE)
+  for (i in seq_along(d$action_ids)) {
+    n <- paste0("solution_1_", d$action_ids[i])
+    solution[[n]] <- as.numeric(status == d$action_ids[i])
   }
 
   # format results data
   out <- format_results_data(
-    d$site_names, d$feature_names, d$action_names,
+    d$site_ids, d$feature_ids, d$action_ids,
     pu_data, zone_data, target_data, solution, parameters)
 
   # tests

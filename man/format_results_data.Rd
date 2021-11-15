@@ -5,9 +5,9 @@
 \title{Format results data}
 \usage{
 format_results_data(
-  site_names,
-  feature_names,
-  action_names,
+  site_ids,
+  feature_ids,
+  action_ids,
   pu_data,
   zone_data,
   target_data,
@@ -16,11 +16,11 @@ format_results_data(
 )
 }
 \arguments{
-\item{site_names}{\code{character} names of sites.}
+\item{site_ids}{\code{character} identifiers of sites.}
 
-\item{feature_names}{\code{character} names of features.}
+\item{feature_ids}{\code{character} identifiers of features.}
 
-\item{action_names}{\code{character} names of actions.}
+\item{action_ids}{\code{character} identifiers of actions.}
 
 \item{pu_data}{\code{data.frame} containing planning unit data used to
 create prioritization.}

@@ -21,5 +21,6 @@ has_valid_spreadsheet_data <- function(x) {
   all_finite(x$site_data) &&
     all_finite(x$feature_data) &&
     all_finite(x$site_status_data) &&
+    all_finite(x$site_feasibility_data) &&
     all_finite(x$action_expectation_data)
 }

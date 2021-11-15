@@ -5,19 +5,19 @@
 \title{Format weights data}
 \usage{
 format_weights_data(
-  site_names,
-  feature_names,
-  action_names,
+  site_ids,
+  feature_ids,
+  action_ids,
   feature_data,
   parameters
 )
 }
 \arguments{
-\item{site_names}{\code{character} names of sites.}
+\item{site_ids}{\code{character} identifiers of sites.}
 
-\item{feature_names}{\code{character} names of features.}
+\item{feature_ids}{\code{character} identifiers of features.}
 
-\item{action_names}{\code{character} names of actions.}
+\item{action_ids}{\code{character} identifiers of actions.}
 
 \item{feature_data}{\code{data.frame} with feature data.}
 

@@ -27,64 +27,101 @@ read_spreadsheet_data <- function(x, parameters) {
   # extract parameters
   site_data_sheet_name <- parameters$site_data_sheet$sheet_name
   site_status_sheet_name <- parameters$site_status_sheet$sheet_name
+  site_feasibility_sheet_name <- parameters$site_feasibility_sheet$sheet_name
   feature_data_sheet_name <- parameters$feature_data_sheet$sheet_name
-  action_expectation_sheet_names <-
-    setdiff(names(w), c(site_data_sheet_name, site_status_sheet_name,
-                        feature_data_sheet_name))
+  action_expectation_sheet_names <- setdiff(
+    names(w),
+    c(site_data_sheet_name, site_feasibility_sheet_name,
+      site_status_sheet_name, feature_data_sheet_name
+    )
+  )
 
   # import data
   ## site data
   site_data <- suppressWarnings(openxlsx::read.xlsx(
-    x, sheet = site_data_sheet_name, colNames = TRUE, startRow = 3))
+    xlsxFile = x,
+    sheet = site_data_sheet_name,
+    colNames = TRUE,
+    startRow = 3
+  ))
   ## site status data
   site_status_data <- suppressWarnings(openxlsx::read.xlsx(
-    x, sheet = site_status_sheet_name, colNames = TRUE, startRow = 3))
+    xlsxFile = x,
+    sheet = site_status_sheet_name,
+    colNames = TRUE,
+    startRow = 3
+  ))
+  ## site feasibility data
+  site_feasibility_data <- suppressWarnings(openxlsx::read.xlsx(
+    xlsxFile = x,
+    sheet = site_feasibility_sheet_name,
+    colNames = TRUE,
+    startRow = 3
+  ))
   ## feature data
   feature_data <- suppressWarnings(openxlsx::read.xlsx(
-    x, sheet = feature_data_sheet_name, colNames = TRUE, startRow = 3))
+    xlsxFile = x,
+    sheet = feature_data_sheet_name,
+    colNames = TRUE,
+    startRow = 3
+  ))
   ## action expectation data
   action_expectation_data <- lapply(
     action_expectation_sheet_names,
     function(y) {
       suppressWarnings(openxlsx::read.xlsx(
-        x, sheet = y, colNames = TRUE, startRow = 3))
+        xlsxFile = x, sheet = y, colNames = TRUE, startRow = 3
+      ))
     })
 
   # convert data to tibble format
   site_data <- tibble::as_tibble(site_data)
   site_status_data <- tibble::as_tibble(site_status_data)
+  site_feasibility_data <- tibble::as_tibble(site_feasibility_data)
   feature_data <- tibble::as_tibble(feature_data)
   action_expectation_data <- lapply(action_expectation_data, tibble::as_tibble)
 
   # extract column names
-  site_data_names <-
-    unlist(
-      openxlsx::read.xlsx(
-        w, sheet = site_data_sheet_name, colNames = FALSE,
-        cols = seq_len(ncol(site_data)), rows = 3),
-      recursive = TRUE, use.names = FALSE)
-  site_status_data_names <-
-    unlist(
-      openxlsx::read.xlsx(
-        w, sheet = site_status_sheet_name, colNames = FALSE,
-        cols = seq_len(ncol(site_data)), rows = 3),
-      recursive = TRUE, use.names = FALSE)
-  feature_data_names <-
-    unlist(
-      openxlsx::read.xlsx(
-        w, sheet = feature_data_sheet_name, colNames = FALSE,
-        cols = seq_len(ncol(site_data)), rows = 3),
-      recursive = TRUE, use.names = FALSE)
-  action_expectation_data_names <-
-    unlist(
-      openxlsx::read.xlsx(
-        w, sheet = action_expectation_sheet_names[[1]],
-        colNames = FALSE, cols = seq_len(ncol(site_data)), rows = 3),
-      recursive = TRUE, use.names = FALSE)
+  site_data_names <- unlist(
+    openxlsx::read.xlsx(
+      w, sheet = site_data_sheet_name, colNames = FALSE,
+      cols = seq_len(ncol(site_data)), rows = 3
+    ),
+    recursive = TRUE, use.names = FALSE
+  )
+  site_status_data_names <- unlist(
+    openxlsx::read.xlsx(
+      w, sheet = site_status_sheet_name, colNames = FALSE,
+      cols = seq_len(ncol(site_data)), rows = 3
+    ),
+    recursive = TRUE, use.names = FALSE
+  )
+  site_feasibility_data_names <- unlist(
+    openxlsx::read.xlsx(
+      w, sheet = site_feasibility_sheet_name, colNames = FALSE,
+      cols = seq_len(ncol(site_data)), rows = 3
+    ),
+    recursive = TRUE, use.names = FALSE
+  )
+  feature_data_names <- unlist(
+    openxlsx::read.xlsx(
+      w, sheet = feature_data_sheet_name, colNames = FALSE,
+      cols = seq_len(ncol(site_data)), rows = 3
+    ),
+    recursive = TRUE, use.names = FALSE
+  )
+  action_expectation_data_names <- unlist(
+    openxlsx::read.xlsx(
+      w, sheet = action_expectation_sheet_names[[1]],
+      colNames = FALSE, cols = seq_len(ncol(site_data)), rows = 3
+    ),
+    recursive = TRUE, use.names = FALSE
+  )
 
   # fix column names
   names(site_data) <- site_data_names
   names(site_status_data) <- site_status_data_names
+  names(site_feasibility_data) <- site_feasibility_data_names
   names(feature_data) <- feature_data_names
   action_expectation_data <- lapply(action_expectation_data, function(x) {
     names(x) <- action_expectation_data_names
@@ -104,6 +141,12 @@ read_spreadsheet_data <- function(x, parameters) {
     site_status_data[[i]] <- as.numeric(site_status_data[[i]])
   }
 
+  ## site feasibility data
+  site_feasibility_data[[1]] <- as.character(site_feasibility_data[[1]])
+  for (i in seq(2, ncol(site_feasibility_data))) {
+    site_feasibility_data[[i]] <- as.numeric(site_feasibility_data[[i]])
+  }
+
   ## feature data
   feature_data[[1]] <- as.character(feature_data[[1]])
   for (i in seq(2, ncol(feature_data))) {
@@ -118,18 +161,21 @@ read_spreadsheet_data <- function(x, parameters) {
         x[[i]] <- as.numeric(x[[i]])
       }
       x
-    })
+    }
+  )
 
   # set names for list
-  names(action_expectation_data) <-
-    paste0("action_", seq_along(action_expectation_data))
+  names(action_expectation_data) <- paste0(
+    "action_", seq_along(action_expectation_data)
+  )
 
   # extract action names
   action_names <- unlist(
     unglue::unglue(
       action_expectation_sheet_names,
       parameters$action_expectation_sheet$sheet_name),
-    recursive = TRUE, use.names = FALSE)
+    recursive = TRUE, use.names = FALSE
+  )
 
   # return result
   list(
@@ -140,6 +186,8 @@ read_spreadsheet_data <- function(x, parameters) {
     action_names = action_names,
     site_data = site_data,
     site_status_data = site_status_data,
+    site_feasibility_data = site_feasibility_data,
     feature_data = feature_data,
-    action_expectation_data = action_expectation_data)
+    action_expectation_data = action_expectation_data
+  )
 }

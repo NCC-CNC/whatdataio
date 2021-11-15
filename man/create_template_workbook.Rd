@@ -4,20 +4,41 @@
 \alias{create_template_workbook}
 \title{Create template workbook}
 \usage{
-create_template_workbook(site_names, feature_names, action_names, parameters)
+create_template_workbook(
+  site_ids,
+  site_descriptions,
+  feature_ids,
+  feature_descriptions,
+  action_ids,
+  action_descriptions,
+  parameters
+)
 }
 \arguments{
-\item{site_names}{\code{character} names of sites. No missing
-(\code{NA}) values are permitted. This object must contain at least one
-name.}
+\item{site_ids}{\code{character} identifiers for sites.
+No missing (\code{NA}) values are permitted. This object must contain at least
+one value.}
 
-\item{feature_names}{\code{character} names of biodiversity features. No missing
-(\code{NA}) values are permitted. This object must contain at least one
-name.}
+\item{site_descriptions}{\code{character} descriptions of sites.
+No missing (\code{NA}) values are permitted. This object must contain at least
+one value.}
 
-\item{action_names}{\code{character} names of management actions. No missing
-(\code{NA}) values are permitted. This object must contain at least one
-name.}
+\item{feature_ids}{\code{character} identifiers for biodiversity features.
+No missing (\code{NA}) values are permitted. This object must contain at least
+one value.}
+
+\item{feature_descriptions}{\code{character} descriptions of biodiversity
+features.
+No missing (\code{NA}) values are permitted. This object must contain at least
+one value.}
+
+\item{action_ids}{\code{character} identifiers for management actions.
+No missing (\code{NA}) values are permitted. This object must contain at least
+one value.}
+
+\item{action_descriptions}{\code{character} descriptions of management actions.
+No missing (\code{NA}) values are permitted. This object must contain at least
+one value.}
 
 \item{parameters}{\code{list} object containing parameters to customize
 appearance of worksheet.}

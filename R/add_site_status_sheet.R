@@ -10,17 +10,19 @@ NULL
 #'
 #' @details
 #' The site status worksheet is used to specify which management actions
-#' can potentially be applied within each site. It can be used to lock
-#' out certain management actions from certain sites.
+#' are currently implemented within each site.
 #'
 #' @inherit add_site_data_sheet return
 #'
 #' @noRd
-add_site_status_sheet <- function(x, data, parameters) {
+add_site_status_sheet <- function(x, data, comments, parameters) {
   # validate arguments
   assertthat::assert_that(
     inherits(x, "Workbook"),
     inherits(data, "data.frame"),
+    inherits(comments, "data.frame"),
+    identical(ncol(data), ncol(comments)),
+    identical(nrow(data), nrow(comments)),
     is.list(parameters))
 
   # define parameters
@@ -135,6 +137,40 @@ add_site_status_sheet <- function(x, data, parameters) {
     type = "whole", operator = "between",
     value = c(0L, 1L), allowBlank = FALSE,
     showInputMsg = TRUE, showErrorMsg = TRUE)
+
+  # add comments
+  ## add comments for header
+  for (i in seq_len(ncol(comments))) {
+    if (!identical(names(data)[i], names(comments)[i])) {
+      openxlsx::writeComment(
+        x,
+        sheet = p$sheet_name,
+        col = i,
+        row = start_row,
+        comment = openxlsx::createComment(
+          comment = names(comments)[i],
+          author = "X"
+        )
+      )
+    }
+  }
+  ## add comments to cells
+  for (i in seq_len(ncol(comments))) {
+    for (j in seq_len(nrow(comments))) {
+      if (!is.na(comments[[i]][[j]])) {
+        openxlsx::writeComment(
+          x,
+          sheet = p$sheet_name,
+          col = i,
+          row = start_row + j,
+          comment = openxlsx::createComment(
+            comment = comments[[i]][[j]],
+            author = "X"
+          )
+        )
+      }
+    }
+  }
 
   # return result
   x

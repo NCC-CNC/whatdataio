@@ -1,44 +1,52 @@
 #' @include internal.R
 NULL
 
-#' Add site results worksheet
+#' Add site feasibility worksheet
 #'
-#' This function adds a site results worksheet to an Excel Workbook.
+#' This function adds a site feasibility worksheet to an Excel Workbook.
 #'
-#' @param x `Workbook` workbook object.
-#'
-#' @param data `data.frame` object with results data.
+#' @inheritParams create_template_workbook
+#' @inheritParams add_site_data_sheet
 #'
 #' @details
-#' The site data worksheet is used to specify site results from a
-#' prioritization.
+#' The site feasibility worksheet is used to specify which management actions
+#' can potentially be applied within each site. It can be used to lock
+#' out certain management actions from certain sites.
 #'
-#' @return An updated `Workbook` object.
+#' @inherit add_site_data_sheet return
 #'
 #' @noRd
-add_site_results_sheet <- function(x, data, comments, parameters) {
+add_site_feasibility_sheet <- function(x, data, comments, parameters) {
   # validate arguments
   assertthat::assert_that(
     inherits(x, "Workbook"),
     inherits(data, "data.frame"),
     inherits(comments, "data.frame"),
-    identical(dim(data), dim(comments)),
+    identical(ncol(data), ncol(comments)),
+    identical(nrow(data), nrow(comments)),
     is.list(parameters))
 
   # define parameters
-  p <- parameters$site_results_sheet
+  p <- parameters$site_feasibility_sheet
   start_row <- 3
-  n_message_rows <- 2
+  n_message_rows <- 5
 
   # create styles
   header_style <- do.call(openxlsx::createStyle, parameters$header_style)
   label_style <- do.call(openxlsx::createStyle, parameters$label_style)
-  data_style <- do.call(openxlsx::createStyle, parameters$data_style)
+  true_style <- do.call(openxlsx::createStyle, parameters$true_style)
+  false_style <- do.call(openxlsx::createStyle, parameters$false_style)
   main_style <- do.call(openxlsx::createStyle, parameters$main_style)
   sub_style <- do.call(openxlsx::createStyle, parameters$sub_style)
 
   # create sheet
   openxlsx::addWorksheet(x, sheetName = p$sheet_name)
+
+  # add default styling for worksheet
+  openxlsx::protectWorksheet(x, p$sheet_name, protect = TRUE,
+    lockFormattingCells = FALSE, lockFormattingColumns = FALSE,
+    lockInsertingColumns = TRUE, lockDeletingColumns = TRUE,
+    lockInsertingRows = TRUE, lockDeletingRows = TRUE)
 
   # set up worksheet
   ## lock sheet
@@ -94,11 +102,17 @@ add_site_results_sheet <- function(x, data, comments, parameters) {
     rows = seq_len(nrow(data)) + start_row, cols = 1,
     gridExpand = TRUE)
 
-  ## style data cells
+  ## add conditional styling
   openxlsx::addStyle(x, p$sheet_name,
-    style = data_style,
-    rows = seq_len(nrow(data)) + 3, cols = seq(2, ncol(data)),
+    style = openxlsx::createStyle(locked = FALSE),
+    cols = seq(2, ncol(data)), rows = seq_len(nrow(data)) + start_row,
     gridExpand = TRUE)
+  openxlsx::conditionalFormatting(x, p$sheet_name,
+    cols = seq(2, ncol(data)), rows = seq_len(nrow(data)) + start_row,
+    rule = "==0", style = false_style)
+  openxlsx::conditionalFormatting(x, p$sheet_name,
+    cols = seq(2, ncol(data)), rows = seq_len(nrow(data)) + start_row,
+    rule = "==1", style = true_style)
 
   # add messages
   ## main message
@@ -117,6 +131,13 @@ add_site_results_sheet <- function(x, data, comments, parameters) {
 
   # add data
   openxlsx::writeDataTable(x, p$sheet_name, x = data, startRow = 3)
+
+  # add input data validation
+  openxlsx::dataValidation(x, p$sheet_name,
+    rows = seq_len(nrow(data)) + start_row, cols = seq(2, ncol(data)),
+    type = "whole", operator = "between",
+    value = c(0L, 1L), allowBlank = FALSE,
+    showInputMsg = TRUE, showErrorMsg = TRUE)
 
   # add comments
   ## add comments for header

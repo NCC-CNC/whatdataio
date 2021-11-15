@@ -39,13 +39,14 @@ Language: en-US
 URL: https://github.com/NCC-CNC/whatdata
 BugReports: https://github.com/NCC-CNC/whatdata/issues
 VignetteBuilder: knitr
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Collate:
     'internal.R'
     'add_action_expectation_sheet.R'
     'add_feature_data_sheet.R'
     'add_feature_results_sheet.R'
     'add_site_data_sheet.R'
+    'add_site_feasibility_sheet.R'
     'add_site_results_sheet.R'
     'add_site_status_sheet.R'
     'add_summary_results_sheet.R'
@@ -57,6 +58,7 @@ Collate:
     'package.R'
     'read_data_configuration.R'
     'read_spreadsheet_data.R'
+    'template_comments.R'
     'template_data.R'
     'verification.R'
 Roxygen: list(markdown = TRUE)

@@ -20,12 +20,16 @@ NULL
 #' @inherit add_site_data_sheet return
 #'
 #' @noRd
-add_action_expectation_sheet <- function(x, data, action_name, parameters) {
+add_action_expectation_sheet <- function(x, data, comments, action_id,
+                                         parameters) {
   # validate arguments
   assertthat::assert_that(
     inherits(x, "Workbook"),
     inherits(data, "data.frame"),
-    assertthat::is.string(action_name), assertthat::noNA(action_name),
+    inherits(comments, "data.frame"),
+    identical(ncol(data), ncol(comments)),
+    identical(nrow(data), nrow(comments)),
+    assertthat::is.string(action_id), assertthat::noNA(action_id),
     is.list(parameters))
 
   # define parameters
@@ -42,7 +46,7 @@ add_action_expectation_sheet <- function(x, data, action_name, parameters) {
 
   # create sheet
   p$sheet_name <- as.character(glue::glue(
-    p$sheet_name, action_names = action_name))
+    p$sheet_name, action_ids = action_id))
   openxlsx::addWorksheet(x, sheetName = p$sheet_name)
 
   # set up worksheet
@@ -111,7 +115,7 @@ add_action_expectation_sheet <- function(x, data, action_name, parameters) {
     cols = seq_len(n_message_rows) + 1, rows = 1)
   openxlsx::writeData(x, p$sheet_name,
     x = data.frame(x = as.character(glue::glue(
-      p$main_message, action_names = action_name)), stringsAsFactors = FALSE),
+      p$main_message, action_ids = action_id)), stringsAsFactors = FALSE),
     startCol = 2, startRow = 1, colNames = FALSE, rowNames = FALSE)
 
   ## add sub message
@@ -119,7 +123,7 @@ add_action_expectation_sheet <- function(x, data, action_name, parameters) {
     cols = seq_len(n_message_rows) + 1, rows = 2)
   openxlsx::writeData(x, p$sheet_name,
     x = data.frame(x = as.character(glue::glue(
-      p$sub_message, action_names = action_name)), stringsAsFactors = FALSE),
+      p$sub_message, action_ids = action_id)), stringsAsFactors = FALSE),
     startCol = 2, startRow = 2, colNames = FALSE, rowNames = FALSE)
 
   # add data
@@ -131,6 +135,40 @@ add_action_expectation_sheet <- function(x, data, action_name, parameters) {
     type = "decimal", operator = "between",
     value = c(0, 1e+4), allowBlank = FALSE,
     showInputMsg = TRUE, showErrorMsg = TRUE)
+
+  # add comments
+  ## add comments for header
+  for (i in seq_len(ncol(comments))) {
+    if (!identical(names(data)[i], names(comments)[i])) {
+      openxlsx::writeComment(
+        x,
+        sheet = p$sheet_name,
+        col = i,
+        row = start_row,
+        comment = openxlsx::createComment(
+          comment = names(comments)[i],
+          author = "X"
+        )
+      )
+    }
+  }
+  ## add comments to cells
+  for (i in seq_len(ncol(comments))) {
+    for (j in seq_len(nrow(comments))) {
+      if (!is.na(comments[[i]][[j]])) {
+        openxlsx::writeComment(
+          x,
+          sheet = p$sheet_name,
+          col = i,
+          row = start_row + j,
+          comment = openxlsx::createComment(
+            comment = comments[[i]][[j]],
+            author = "X"
+          )
+        )
+      }
+    }
+  }
 
   # return result
   x

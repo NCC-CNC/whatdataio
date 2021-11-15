@@ -5,20 +5,20 @@
 \title{Format planning unit data}
 \usage{
 format_pu_data(
-  site_names,
-  feature_names,
-  action_names,
+  site_ids,
+  feature_ids,
+  action_ids,
   site_data,
   action_expectation_data,
   parameters
 )
 }
 \arguments{
-\item{site_names}{\code{character} names of sites.}
+\item{site_ids}{\code{character} identifiers of sites.}
 
-\item{feature_names}{\code{character} names of features.}
+\item{feature_ids}{\code{character} identifiers of features.}
 
-\item{action_names}{\code{character} names of actions.}
+\item{action_ids}{\code{character} identifiers of actions.}
 
 \item{site_data}{\code{data.frame} with site data.}
 

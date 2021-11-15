@@ -4,20 +4,14 @@
 \alias{format_target_data}
 \title{Format target data}
 \usage{
-format_target_data(
-  site_names,
-  feature_names,
-  action_names,
-  feature_data,
-  parameters
-)
+format_target_data(site_ids, feature_ids, action_ids, feature_data, parameters)
 }
 \arguments{
-\item{site_names}{\code{character} names of sites.}
+\item{site_ids}{\code{character} identifiers of sites.}
 
-\item{feature_names}{\code{character} names of features.}
+\item{feature_ids}{\code{character} identifiers of features.}
 
-\item{action_names}{\code{character} names of actions.}
+\item{action_ids}{\code{character} identifiers of actions.}
 
 \item{feature_data}{\code{data.frame} with feature data.}
 

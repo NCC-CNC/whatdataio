@@ -13,11 +13,13 @@ NULL
 #' @inherit add_site_results_sheet return
 #'
 #' @noRd
-add_summary_results_sheet <- function(x, data, parameters) {
+add_summary_results_sheet <- function(x, data, comments, parameters) {
   # validate arguments
   assertthat::assert_that(
     inherits(x, "Workbook"),
     inherits(data, "data.frame"),
+    inherits(comments, "data.frame"),
+    identical(dim(data), dim(comments)),
     is.list(parameters))
 
   # define parameters
@@ -113,6 +115,40 @@ add_summary_results_sheet <- function(x, data, parameters) {
   # add data
   openxlsx::writeDataTable(x, p$sheet_name, x = data, startRow = 3)
 
+  # add comments
+  ## add comments for header
+  for (i in seq_len(ncol(comments))) {
+    if (!identical(names(data)[i], names(comments)[i])) {
+      openxlsx::writeComment(
+        x,
+        sheet = p$sheet_name,
+        col = i,
+        row = start_row,
+        comment = openxlsx::createComment(
+          comment = names(comments)[i],
+          author = "X"
+        )
+      )
+    }
+  }
+  ## add comments to cells
+  for (i in seq_len(ncol(comments))) {
+    for (j in seq_len(nrow(comments))) {
+      if (!is.na(comments[[i]][[j]])) {
+        openxlsx::writeComment(
+          x,
+          sheet = p$sheet_name,
+          col = i,
+          row = start_row + j,
+          comment = openxlsx::createComment(
+            comment = comments[[i]][[j]],
+            author = "X"
+          )
+        )
+      }
+    }
+  }
+  
   # return result
   x
 }

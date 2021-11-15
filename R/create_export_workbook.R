@@ -5,31 +5,67 @@ NULL
 #'
 #' This function creates an Excel Workbook with results.
 #'
-#' @param site_names `character` names of sites. No missing
-#'   (`NA`) values are permitted. This object must contain at least one
-#'   name.
+#' @param site_ids `character` identifiers for sites.
+#'   No missing (`NA`) values are permitted. This object must contain at least
+#'   one value.
 #'
-#' @param feature_names `character` names of biodiversity features. No missing
-#'   (`NA`) values are permitted. This object must contain at least one
-#'    name.
+#' @param feature_ids `character` identifiers for biodiversity features.
+#'   No missing (`NA`) values are permitted. This object must contain at least
+#'   one value.
 #'
-#' @param action_names `character` names of management actions. No missing
-#'   (`NA`) values are permitted. This object must contain at least one
-#'   name.
+#' @param action_ids `character` identifiers for management actions.
+#'   No missing (`NA`) values are permitted. This object must contain at least
+#'   one value.
+#'
+#' @param site_descriptions `character` descriptions of sites.
+#'   No missing (`NA`) values are permitted. This object must contain at least
+#'   one value.
+#'
+#' @param feature_descriptions `character` descriptions of biodiversity
+#'   features.
+#'   No missing (`NA`) values are permitted. This object must contain at least
+#'   one value.
+#'
+#' @param action_descriptions `character` descriptions of management actions.
+#'   No missing (`NA`) values are permitted. This object must contain at least
+#'   one value.
 #'
 #' @param site_data `data.frame` containing site data.
 #'
 #' @param site_status_data `data.frame`containing site status data.
 #'
+#' @param site_feasibility_data `data.frame`containing site feasibility data.
+#'
 #' @param feature_data `data.frame` containing feature data.
 #'
-#' @param action_expectation_data `data.frame` containing expectation data.
+#' @param action_expectation_data `list` of `data.frame` objects
+#'   containing expectation data.
 #'
 #' @param summary_results_data `data.frame` containing summary results data.
 #'
 #' @param site_results_data `data.frame` containing site results data.
 #'
 #' @param feature_results_data `data.frame` containing feature results data.
+#'
+#' @param site_comments `data.frame` containing site comments.
+#'
+#' @param site_status_comments `data.frame`containing site status comments.
+#'
+#' @param site_feasibility_comments `data.frame`containing site feasibility
+#'  comments.
+#'
+#' @param feature_comments `data.frame` containing feature comments.
+#'
+#' @param action_expectation_comments `list` of `data.frame` objects
+#'   containing expectation comments.
+#'
+#' @param summary_results_comments `data.frame` containing summary results
+#'  comments.
+#'
+#' @param site_results_comments `data.frame` containing site results comments.
+#'
+#' @param feature_results_comments `data.frame` containing feature results
+#'  comments.
 #'
 #' @param parameters `list` object containing parameters to customize
 #'  appearance of worksheet.
@@ -38,22 +74,65 @@ NULL
 #'
 #' @export
 create_export_workbook <- function(
-  site_names, feature_names, action_names,
-  site_data, site_status_data, feature_data, action_expectation_data,
+  ## variables
+  site_ids, site_descriptions,
+  feature_ids, feature_descriptions,
+  action_ids, action_descriptions,
+  ## data
+  site_data, site_status_data, site_feasibility_data,
+  feature_data, action_expectation_data,
+  ## data comments
+  site_comments, site_status_comments, site_feasibility_comments,
+  feature_comments, action_expectation_comments,
+  ## results
   summary_results_data, site_results_data, feature_results_data,
+  ## results comments
+  summary_results_comments, site_results_comments, feature_results_comments,
+  ## parameter
   parameters) {
   # validate arguments
   assertthat::assert_that(
-    is.character(site_names), assertthat::noNA(site_names),
-    is.character(feature_names), assertthat::noNA(feature_names),
-    is.character(action_names), assertthat::noNA(action_names),
+    ## ids
+    is.character(site_ids), assertthat::noNA(site_ids),
+    is.character(feature_ids), assertthat::noNA(feature_ids),
+    is.character(action_ids), assertthat::noNA(action_ids),
+    ## descriptions
+    is.character(site_descriptions), assertthat::noNA(site_descriptions),
+    is.character(feature_descriptions), assertthat::noNA(feature_descriptions),
+    is.character(action_descriptions), assertthat::noNA(action_descriptions),
+    identical(length(site_ids), length(site_descriptions)),
+    identical(length(feature_ids), length(feature_descriptions)),
+    identical(length(action_ids), length(action_descriptions)),
+    ## input data
     inherits(site_data, "data.frame"),
     inherits(site_status_data, "data.frame"),
+    inherits(site_feasibility_data, "data.frame"),
     inherits(feature_data, "data.frame"),
     inherits(action_expectation_data, "list"),
+    ## input comments
+    inherits(site_comments, "data.frame"),
+    inherits(site_status_comments, "data.frame"),
+    inherits(site_feasibility_comments, "data.frame"),
+    inherits(feature_comments, "data.frame"),
+    inherits(action_expectation_comments, "list"),
+    identical(dim(site_data), dim(site_comments)),
+    identical(dim(site_status_data), dim(site_status_comments)),
+    identical(dim(site_feasibility_data), dim(site_feasibility_comments)),
+    identical(dim(feature_data), dim(feature_comments)),
+    identical(dim(action_expectation_data), dim(action_expectation_comments)),
+    identical(dim(site_data), dim(site_comments)),
+    ## results data
     inherits(summary_results_data, "data.frame"),
     inherits(site_results_data, "data.frame"),
-    inherits(feature_results_data, "data.frame"))
+    inherits(feature_results_data, "data.frame"),
+    ## results comments
+    inherits(summary_results_comments, "data.frame"),
+    inherits(site_results_comments, "data.frame"),
+    inherits(feature_results_comments, "data.frame"),
+    identical(dim(summary_results_data), dim(summary_results_comments)),
+    identical(dim(site_results_data), dim(site_results_comments)),
+    identical(dim(feature_results_data), dim(feature_results_comments))
+  )
 
   # create spreadsheet
   x <- openxlsx::createWorkbook()
@@ -61,34 +140,70 @@ create_export_workbook <- function(
   # add worksheets
   ## site data sheet
   x <- add_site_data_sheet(
-    x, data = site_data, parameters = parameters)
+    x = x,
+    data = site_data,
+    comments = site_comments,
+    parameters = parameters
+  )
 
-  ## site action status  sheet
+  ## site status sheet
   x <- add_site_status_sheet(
-    x, data = site_status_data, parameters = parameters)
+    x = x,
+    data = site_status_data,
+    comments = site_status_comments,
+    parameters = parameters
+  )
+
+  ## site feasibility sheet
+  x <- add_site_feasibility_sheet(
+    x = x,
+    data = site_feasibility_data,
+    comments = site_feasibility_comments,
+    parameters = parameters
+  )
 
   ## feature data sheet
   x <- add_feature_data_sheet(
-    x, data = feature_data, parameters = parameters)
+    x = x,
+    data = feature_data,
+    comments = feature_comments,
+    parameters = parameters
+  )
 
   ## feature expectation data sheet for each action
-  for (i in seq_along(action_names)) {
+  for (i in seq_along(action_ids)) {
     x <- add_action_expectation_sheet(
-      x, data = action_expectation_data[[i]],
-      action_name = action_names[i], parameters = parameters)
+      x = x,
+      data = action_expectation_data[[i]],
+      comments = action_expectation_comments[[i]],
+      action_id = action_ids[i],
+      parameters = parameters
+    )
   }
 
   ## add summary results worksheet
   x <- add_summary_results_sheet(
-    x, data = summary_results_data, parameters = parameters)
+    x = x,
+    data = summary_results_data,
+    comments = summary_results_comments,
+    parameters = parameters
+  )
 
   ## add site results worksheet
   x <- add_site_results_sheet(
-    x, data = site_results_data, parameters = parameters)
+    x = x,
+    data = site_results_data,
+    comments = site_results_comments,
+    parameters = parameters
+  )
 
   ## add feature results worksheet
   x <- add_feature_results_sheet(
-    x, data = feature_results_data, parameters = parameters)
+    x = x,
+    data = feature_results_data,
+    comments = feature_results_comments,
+    parameters = parameters
+  )
 
   # return result
   x

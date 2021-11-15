@@ -4,14 +4,14 @@
 \alias{format_zone_data}
 \title{Format zone data}
 \usage{
-format_zone_data(site_names, feature_names, action_names, parameters)
+format_zone_data(site_ids, feature_ids, action_ids, parameters)
 }
 \arguments{
-\item{site_names}{\code{character} names of sites.}
+\item{site_ids}{\code{character} identifiers of sites.}
 
-\item{feature_names}{\code{character} names of features.}
+\item{feature_ids}{\code{character} identifiers of features.}
 
-\item{action_names}{\code{character} names of actions.}
+\item{action_ids}{\code{character} identifiers of actions.}
 
 \item{parameters}{\code{list} object with configuration parameters.}
 }

@@ -9,6 +9,7 @@ doc
 *.Rproj.user
 *.Rhistory
 .Rproj.user
+
 # log files
 gurobi.log
 test.log
@@ -16,6 +17,7 @@ check.log
 spell.log
 gp.log
 examples.log
+test-data.Rout
 
 # system files
 .directory

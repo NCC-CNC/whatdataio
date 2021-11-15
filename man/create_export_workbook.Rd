@@ -5,45 +5,93 @@
 \title{Create export workbook}
 \usage{
 create_export_workbook(
-  site_names,
-  feature_names,
-  action_names,
+  site_ids,
+  site_descriptions,
+  feature_ids,
+  feature_descriptions,
+  action_ids,
+  action_descriptions,
   site_data,
   site_status_data,
+  site_feasibility_data,
   feature_data,
   action_expectation_data,
+  site_comments,
+  site_status_comments,
+  site_feasibility_comments,
+  feature_comments,
+  action_expectation_comments,
   summary_results_data,
   site_results_data,
   feature_results_data,
+  summary_results_comments,
+  site_results_comments,
+  feature_results_comments,
   parameters
 )
 }
 \arguments{
-\item{site_names}{\code{character} names of sites. No missing
-(\code{NA}) values are permitted. This object must contain at least one
-name.}
+\item{site_ids}{\code{character} identifiers for sites.
+No missing (\code{NA}) values are permitted. This object must contain at least
+one value.}
 
-\item{feature_names}{\code{character} names of biodiversity features. No missing
-(\code{NA}) values are permitted. This object must contain at least one
-name.}
+\item{site_descriptions}{\code{character} descriptions of sites.
+No missing (\code{NA}) values are permitted. This object must contain at least
+one value.}
 
-\item{action_names}{\code{character} names of management actions. No missing
-(\code{NA}) values are permitted. This object must contain at least one
-name.}
+\item{feature_ids}{\code{character} identifiers for biodiversity features.
+No missing (\code{NA}) values are permitted. This object must contain at least
+one value.}
+
+\item{feature_descriptions}{\code{character} descriptions of biodiversity
+features.
+No missing (\code{NA}) values are permitted. This object must contain at least
+one value.}
+
+\item{action_ids}{\code{character} identifiers for management actions.
+No missing (\code{NA}) values are permitted. This object must contain at least
+one value.}
+
+\item{action_descriptions}{\code{character} descriptions of management actions.
+No missing (\code{NA}) values are permitted. This object must contain at least
+one value.}
 
 \item{site_data}{\code{data.frame} containing site data.}
 
 \item{site_status_data}{\code{data.frame}containing site status data.}
 
+\item{site_feasibility_data}{\code{data.frame}containing site feasibility data.}
+
 \item{feature_data}{\code{data.frame} containing feature data.}
 
-\item{action_expectation_data}{\code{data.frame} containing expectation data.}
+\item{action_expectation_data}{\code{list} of \code{data.frame} objects
+containing expectation data.}
+
+\item{site_comments}{\code{data.frame} containing site comments.}
+
+\item{site_status_comments}{\code{data.frame}containing site status comments.}
+
+\item{site_feasibility_comments}{\code{data.frame}containing site feasibility
+comments.}
+
+\item{feature_comments}{\code{data.frame} containing feature comments.}
+
+\item{action_expectation_comments}{\code{list} of \code{data.frame} objects
+containing expectation comments.}
 
 \item{summary_results_data}{\code{data.frame} containing summary results data.}
 
 \item{site_results_data}{\code{data.frame} containing site results data.}
 
 \item{feature_results_data}{\code{data.frame} containing feature results data.}
+
+\item{summary_results_comments}{\code{data.frame} containing summary results
+comments.}
+
+\item{site_results_comments}{\code{data.frame} containing site results comments.}
+
+\item{feature_results_comments}{\code{data.frame} containing feature results
+comments.}
 
 \item{parameters}{\code{list} object containing parameters to customize
 appearance of worksheet.}

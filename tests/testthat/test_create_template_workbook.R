@@ -6,9 +6,12 @@ test_that("expected result", {
   parameters <- read_data_configuration()
   # main code
   w <- create_template_workbook(
-    site_names = c("s1", "s2", "s3"),
-    feature_names = c("spp1", "spp2"),
-    action_names = c("a1"),
+    site_ids = c("s1", "s2", "s3"),
+    site_descriptions = c("Site s1", "Site s2", "Site s3"),
+    feature_ids = c("spp1", "spp2"),
+    feature_descriptions = c("Species spp1", "Species spp2"),
+    action_ids = c("a1"),
+    action_descriptions = c("Action a1"),
     parameters = parameters)
   # tests
   expect_is(w, "Workbook")

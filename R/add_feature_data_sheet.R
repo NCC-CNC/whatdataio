@@ -15,11 +15,14 @@ NULL
 #' @inherit add_site_data_sheet return
 #'
 #' @noRd
-add_feature_data_sheet <- function(x, data, parameters) {
+add_feature_data_sheet <- function(x, data, comments, parameters) {
   # validate arguments
   assertthat::assert_that(
     inherits(x, "Workbook"),
     inherits(data, "data.frame"),
+    inherits(comments, "data.frame"),
+    identical(ncol(data), ncol(comments)),
+    identical(nrow(data), nrow(comments)),
     is.list(parameters))
 
   # define parameters
@@ -123,6 +126,40 @@ add_feature_data_sheet <- function(x, data, parameters) {
     type = "decimal", operator = "between",
     value = c(0, 100), allowBlank = FALSE,
     showInputMsg = TRUE, showErrorMsg = TRUE)
+
+  # add comments
+  ## add comments for header
+  for (i in seq_len(ncol(comments))) {
+    if (!identical(names(data)[i], names(comments)[i])) {
+      openxlsx::writeComment(
+        x,
+        sheet = p$sheet_name,
+        col = i,
+        row = start_row,
+        comment = openxlsx::createComment(
+          comment = names(comments)[i],
+          author = "X"
+        )
+      )
+    }
+  }
+  ## add comments to cells
+  for (i in seq_len(ncol(comments))) {
+    for (j in seq_len(nrow(comments))) {
+      if (!is.na(comments[[i]][[j]])) {
+        openxlsx::writeComment(
+          x,
+          sheet = p$sheet_name,
+          col = i,
+          row = start_row + j,
+          comment = openxlsx::createComment(
+            comment = comments[[i]][[j]],
+            author = "X"
+          )
+        )
+      }
+    }
+  }
 
   # return result
   x
