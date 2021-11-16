@@ -10,16 +10,27 @@ NULL
 #' @return `data.frame` object.
 #'
 #' @noRd
-template_site_data <- function(site_ids, action_ids, parameters) {
+template_site_data <- function(site_ids, action_ids, parameters,
+                               site_longitudes = rep("", length(site_ids)),
+                               site_latitudes = rep("", length(site_ids))) {
   # assert arguments are valid
   assertthat::assert_that(
     is.character(site_ids), assertthat::noNA(site_ids),
     is.character(action_ids), assertthat::noNA(action_ids),
-    is.list(parameters))
+    is.list(parameters),
+    inherits(site_longitudes, c("character", "numeric")),
+    inherits(site_latitudes, c("character", "numeric")),
+    identical(length(site_longitudes), length(site_ids)),
+    identical(length(site_latitudes), length(site_ids))
+  )
   # extract parameters
   p <- parameters$site_data_sheet
   # create data
-  d <- tibble::tibble(site_id = site_ids, longitude = "", latitude = "")
+  d <- tibble::tibble(
+    site_id = site_ids,
+    longitude = site_longitudes,
+    latitude = site_latitudes
+  )
   names(d) <- c(p$name_header, p$longitude_header, p$latitude_header)
   d2 <- tibble::as_tibble(as.data.frame(matrix(
       NA_real_, ncol = length(action_ids))))
