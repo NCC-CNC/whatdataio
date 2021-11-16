@@ -11,7 +11,9 @@ create_template_workbook(
   feature_descriptions,
   action_ids,
   action_descriptions,
-  parameters
+  parameters,
+  site_longitudes = rep("", length(site_ids)),
+  site_latitudes = rep("", length(site_ids))
 )
 }
 \arguments{
@@ -42,6 +44,12 @@ one value.}
 
 \item{parameters}{\code{list} object containing parameters to customize
 appearance of worksheet.}
+
+\item{site_longitudes}{\code{numeric} Longitudes for sites.
+Defaults to an empty \code{character} vector equal to the number of sites.}
+
+\item{site_latitudes}{\code{numeric} Latitudes for sites.
+Defaults to an empty \code{character} vector equal to the number of sites.}
 }
 \value{
 \code{Workbook} object.

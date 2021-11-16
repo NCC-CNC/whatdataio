@@ -122,33 +122,72 @@
     <p>This function creates a data template Excel Workbook.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>create_template_workbook</span><span class='op'>(</span><span class='va'>site_names</span>, <span class='va'>feature_names</span>, <span class='va'>action_names</span>, <span class='va'>parameters</span><span class='op'>)</span></code></pre></div>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>create_template_workbook</span><span class='op'>(</span>
+  <span class='va'>site_ids</span>,
+  <span class='va'>site_descriptions</span>,
+  <span class='va'>feature_ids</span>,
+  <span class='va'>feature_descriptions</span>,
+  <span class='va'>action_ids</span>,
+  <span class='va'>action_descriptions</span>,
+  <span class='va'>parameters</span>,
+  site_longitudes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='st'>""</span>, <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>site_ids</span><span class='op'>)</span><span class='op'>)</span>,
+  site_latitudes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='st'>""</span>, <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>site_ids</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>site_names</th>
-      <td><p><code>character</code> names of sites. No missing
-(<code>NA</code>) values are permitted. This object must contain at least one
-name.</p></td>
+      <th>site_ids</th>
+      <td><p><code>character</code> identifiers for sites.
+No missing (<code>NA</code>) values are permitted. This object must contain at least
+one value.</p></td>
     </tr>
     <tr>
-      <th>feature_names</th>
-      <td><p><code>character</code> names of biodiversity features. No missing
-(<code>NA</code>) values are permitted. This object must contain at least one
-name.</p></td>
+      <th>site_descriptions</th>
+      <td><p><code>character</code> descriptions of sites.
+No missing (<code>NA</code>) values are permitted. This object must contain at least
+one value.</p></td>
     </tr>
     <tr>
-      <th>action_names</th>
-      <td><p><code>character</code> names of management actions. No missing
-(<code>NA</code>) values are permitted. This object must contain at least one
-name.</p></td>
+      <th>feature_ids</th>
+      <td><p><code>character</code> identifiers for biodiversity features.
+No missing (<code>NA</code>) values are permitted. This object must contain at least
+one value.</p></td>
+    </tr>
+    <tr>
+      <th>feature_descriptions</th>
+      <td><p><code>character</code> descriptions of biodiversity
+features.
+No missing (<code>NA</code>) values are permitted. This object must contain at least
+one value.</p></td>
+    </tr>
+    <tr>
+      <th>action_ids</th>
+      <td><p><code>character</code> identifiers for management actions.
+No missing (<code>NA</code>) values are permitted. This object must contain at least
+one value.</p></td>
+    </tr>
+    <tr>
+      <th>action_descriptions</th>
+      <td><p><code>character</code> descriptions of management actions.
+No missing (<code>NA</code>) values are permitted. This object must contain at least
+one value.</p></td>
     </tr>
     <tr>
       <th>parameters</th>
       <td><p><code>list</code> object containing parameters to customize
 appearance of worksheet.</p></td>
+    </tr>
+    <tr>
+      <th>site_longitudes</th>
+      <td><p><code>numeric</code> Longitudes for sites.
+Defaults to an empty <code>character</code> vector equal to the number of sites.</p></td>
+    </tr>
+    <tr>
+      <th>site_latitudes</th>
+      <td><p><code>numeric</code> Latitudes for sites.
+Defaults to an empty <code>character</code> vector equal to the number of sites.</p></td>
     </tr>
     </table>
 
