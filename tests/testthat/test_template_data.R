@@ -13,13 +13,13 @@ test_that("template_site_data", {
   expect_true(all(vapply(an, function(x) any(grepl(x, names(d))), logical(1))))
 })
 
-test_that("template_site_status_data", {
+test_that("template_status_data", {
   # data
   p <- read_data_configuration()
   sn <- paste0("s", seq_len(5))
   fn <- paste0("f", seq_len(3))
   an <- paste0("a", seq_len(2))
-  d <- template_site_status_data(sn, an, p)
+  d <- template_status_data(sn, an, p)
   # tests
   expect_is(d, "data.frame")
   expect_equal(d[[1]], sn)
@@ -28,13 +28,13 @@ test_that("template_site_status_data", {
   expect_equal(d[[3]], rep(0, 5))
 })
 
-test_that("template_site_feasibility_data", {
+test_that("template_feasibility_data", {
   # data
   p <- read_data_configuration()
   sn <- paste0("s", seq_len(5))
   fn <- paste0("f", seq_len(3))
   an <- paste0("a", seq_len(2))
-  d <- template_site_feasibility_data(sn, an, p)
+  d <- template_feasibility_data(sn, an, p)
   # tests
   expect_is(d, "data.frame")
   expect_equal(d[[1]], sn)

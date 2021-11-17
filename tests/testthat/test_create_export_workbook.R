@@ -16,14 +16,14 @@ test_that("expected result", {
     action_descriptions = d$action_descriptions,
     ## data
     site_data = d$site_data,
-    site_status_data = d$site_status_data,
-    site_feasibility_data = d$site_feasibility_data,
+    status_data = d$status_data,
+    feasibility_data = d$feasibility_data,
     feature_data = d$feature_data,
     action_expectation_data = d$action_expectation_data,
     ## data comments
     site_comments = d$site_comments,
-    site_status_comments = d$site_status_comments,
-    site_feasibility_comments = d$site_feasibility_comments,
+    status_comments = d$status_comments,
+    feasibility_comments = d$feasibility_comments,
     feature_comments = d$feature_comments,
     action_expectation_comments = d$action_expectation_comments,
     ## results

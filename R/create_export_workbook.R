@@ -32,9 +32,9 @@ NULL
 #'
 #' @param site_data `data.frame` containing site data.
 #'
-#' @param site_status_data `data.frame`containing site status data.
+#' @param status_data `data.frame`containing status data.
 #'
-#' @param site_feasibility_data `data.frame`containing site feasibility data.
+#' @param feasibility_data `data.frame`containing feasibility data.
 #'
 #' @param feature_data `data.frame` containing feature data.
 #'
@@ -49,9 +49,9 @@ NULL
 #'
 #' @param site_comments `data.frame` containing site comments.
 #'
-#' @param site_status_comments `data.frame`containing site status comments.
+#' @param status_comments `data.frame`containing status comments.
 #'
-#' @param site_feasibility_comments `data.frame`containing site feasibility
+#' @param feasibility_comments `data.frame`containing feasibility
 #'  comments.
 #'
 #' @param feature_comments `data.frame` containing feature comments.
@@ -79,10 +79,10 @@ create_export_workbook <- function(
   feature_ids, feature_descriptions,
   action_ids, action_descriptions,
   ## data
-  site_data, site_status_data, site_feasibility_data,
+  site_data, status_data, feasibility_data,
   feature_data, action_expectation_data,
   ## data comments
-  site_comments, site_status_comments, site_feasibility_comments,
+  site_comments, status_comments, feasibility_comments,
   feature_comments, action_expectation_comments,
   ## results
   summary_results_data, site_results_data, feature_results_data,
@@ -105,19 +105,19 @@ create_export_workbook <- function(
     identical(length(action_ids), length(action_descriptions)),
     ## input data
     inherits(site_data, "data.frame"),
-    inherits(site_status_data, "data.frame"),
-    inherits(site_feasibility_data, "data.frame"),
+    inherits(status_data, "data.frame"),
+    inherits(feasibility_data, "data.frame"),
     inherits(feature_data, "data.frame"),
     inherits(action_expectation_data, "list"),
     ## input comments
     inherits(site_comments, "data.frame"),
-    inherits(site_status_comments, "data.frame"),
-    inherits(site_feasibility_comments, "data.frame"),
+    inherits(status_comments, "data.frame"),
+    inherits(feasibility_comments, "data.frame"),
     inherits(feature_comments, "data.frame"),
     inherits(action_expectation_comments, "list"),
     identical(dim(site_data), dim(site_comments)),
-    identical(dim(site_status_data), dim(site_status_comments)),
-    identical(dim(site_feasibility_data), dim(site_feasibility_comments)),
+    identical(dim(status_data), dim(status_comments)),
+    identical(dim(feasibility_data), dim(feasibility_comments)),
     identical(dim(feature_data), dim(feature_comments)),
     identical(dim(action_expectation_data), dim(action_expectation_comments)),
     identical(dim(site_data), dim(site_comments)),
@@ -146,19 +146,19 @@ create_export_workbook <- function(
     parameters = parameters
   )
 
-  ## site status sheet
-  x <- add_site_status_sheet(
+  ## status sheet
+  x <- add_status_data_sheet(
     x = x,
-    data = site_status_data,
-    comments = site_status_comments,
+    data = status_data,
+    comments = status_comments,
     parameters = parameters
   )
 
-  ## site feasibility sheet
-  x <- add_site_feasibility_sheet(
+  ## feasibility sheet
+  x <- add_feasibility_data_sheet(
     x = x,
-    data = site_feasibility_data,
-    comments = site_feasibility_comments,
+    data = feasibility_data,
+    comments = feasibility_comments,
     parameters = parameters
   )
 

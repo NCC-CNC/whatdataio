@@ -41,23 +41,23 @@ template_site_data <- function(site_ids, action_ids, parameters,
   d
 }
 
-#' Template site status data
+#' Template status data
 #'
-#' Create site status data for the template workbook.
+#' Create status data for the template workbook.
 #'
 #' @inheritParams create_template_workbook
 #'
 #' @return `data.frame` object.
 #'
 #' @noRd
-template_site_status_data <- function(site_ids, action_ids, parameters) {
+template_status_data <- function(site_ids, action_ids, parameters) {
   # assert arguments are valid
   assertthat::assert_that(
     is.character(site_ids), assertthat::noNA(site_ids),
     is.character(action_ids), assertthat::noNA(action_ids),
     is.list(parameters))
   # extract parameters
-  p <- parameters$site_status_sheet
+  p <- parameters$status_data_sheet
   # create data
   d <- tibble::tibble(site_id = site_ids)
   names(d) <- c(p$name_header)
@@ -70,23 +70,23 @@ template_site_status_data <- function(site_ids, action_ids, parameters) {
   d
 }
 
-#' Template site feasibility data
+#' Template feasibility data
 #'
-#' Create site feasibility data for the template workbook.
+#' Create feasibility data for the template workbook.
 #'
 #' @inheritParams create_template_workbook
 #'
 #' @return `data.frame` object.
 #'
 #' @noRd
-template_site_feasibility_data <- function(site_ids, action_ids, parameters) {
+template_feasibility_data <- function(site_ids, action_ids, parameters) {
   # assert arguments are valid
   assertthat::assert_that(
     is.character(site_ids), assertthat::noNA(site_ids),
     is.character(action_ids), assertthat::noNA(action_ids),
     is.list(parameters))
   # extract parameters
-  p <- parameters$site_feasibility_sheet
+  p <- parameters$feasibility_data_sheet
   # create data
   d <- tibble::tibble(site_id = site_ids)
   names(d) <- c(p$name_header)

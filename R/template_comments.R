@@ -35,25 +35,25 @@ template_site_comments <- function(site_descriptions,
   d
 }
 
-#' Template site status data
+#' Template status data
 #'
-#' Create site status comments for the template workbook.
+#' Create status comments for the template workbook.
 #'
 #' @inheritParams create_template_workbook
 #'
 #' @return `data.frame` object.
 #'
 #' @noRd
-template_site_status_comments <- function(site_descriptions,
-                                          action_descriptions,
-                                          parameters) {
+template_status_comments <- function(site_descriptions,
+                                     action_descriptions,
+                                     parameters) {
   # assert arguments are valid
   assertthat::assert_that(
     is.character(site_descriptions), assertthat::noNA(site_descriptions),
     is.character(action_descriptions), assertthat::noNA(action_descriptions),
     is.list(parameters))
   # extract parameters
-  p <- parameters$site_status_sheet
+  p <- parameters$status_sheet
   # create data
   d <- tibble::tibble(site_id = site_descriptions)
   names(d) <- c(p$name_header)
@@ -65,19 +65,19 @@ template_site_status_comments <- function(site_descriptions,
   d
 }
 
-#' Template site feasibility comments
+#' Template feasibility comments
 #'
-#' Create site feasibility comments for the template workbook.
+#' Create feasibility comments for the template workbook.
 #'
 #' @inheritParams create_template_workbook
 #'
 #' @return `data.frame` object.
 #'
 #' @noRd
-template_site_feasibility_comments <- function(site_descriptions,
-                                               action_descriptions,
-                                               parameters) {
-  template_site_status_comments(
+template_feasibility_comments <- function(site_descriptions,
+                                          action_descriptions,
+                                          parameters) {
+  template_status_comments(
     site_descriptions = site_descriptions,
     action_descriptions = action_descriptions,
     parameters = parameters

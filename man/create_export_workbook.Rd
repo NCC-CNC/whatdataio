@@ -12,13 +12,13 @@ create_export_workbook(
   action_ids,
   action_descriptions,
   site_data,
-  site_status_data,
-  site_feasibility_data,
+  status_data,
+  feasibility_data,
   feature_data,
   action_expectation_data,
   site_comments,
-  site_status_comments,
-  site_feasibility_comments,
+  status_comments,
+  feasibility_comments,
   feature_comments,
   action_expectation_comments,
   summary_results_data,
@@ -58,9 +58,9 @@ one value.}
 
 \item{site_data}{\code{data.frame} containing site data.}
 
-\item{site_status_data}{\code{data.frame}containing site status data.}
+\item{status_data}{\code{data.frame}containing status data.}
 
-\item{site_feasibility_data}{\code{data.frame}containing site feasibility data.}
+\item{feasibility_data}{\code{data.frame}containing feasibility data.}
 
 \item{feature_data}{\code{data.frame} containing feature data.}
 
@@ -69,9 +69,9 @@ containing expectation data.}
 
 \item{site_comments}{\code{data.frame} containing site comments.}
 
-\item{site_status_comments}{\code{data.frame}containing site status comments.}
+\item{status_comments}{\code{data.frame}containing status comments.}
 
-\item{site_feasibility_comments}{\code{data.frame}containing site feasibility
+\item{feasibility_comments}{\code{data.frame}containing feasibility
 comments.}
 
 \item{feature_comments}{\code{data.frame} containing feature comments.}

@@ -1,22 +1,21 @@
 #' @include internal.R
 NULL
 
-#' Add site feasibility worksheet
+#' Add site status worksheet
 #'
-#' This function adds a site feasibility worksheet to an Excel Workbook.
+#' This function adds a site status worksheet to an Excel Workbook.
 #'
 #' @inheritParams create_template_workbook
 #' @inheritParams add_site_data_sheet
 #'
 #' @details
-#' The site feasibility worksheet is used to specify which management actions
-#' can potentially be applied within each site. It can be used to lock
-#' out certain management actions from certain sites.
+#' The site status worksheet is used to specify which management actions
+#' are currently implemented within each site.
 #'
 #' @inherit add_site_data_sheet return
 #'
 #' @noRd
-add_site_feasibility_sheet <- function(x, data, comments, parameters) {
+add_status_data_sheet <- function(x, data, comments, parameters) {
   # validate arguments
   assertthat::assert_that(
     inherits(x, "Workbook"),
@@ -27,7 +26,7 @@ add_site_feasibility_sheet <- function(x, data, comments, parameters) {
     is.list(parameters))
 
   # define parameters
-  p <- parameters$site_feasibility_sheet
+  p <- parameters$status_data_sheet
   start_row <- 3
   n_message_rows <- 5
 

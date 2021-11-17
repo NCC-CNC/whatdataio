@@ -57,18 +57,20 @@ simulate_data <- function(
 
   # simulate site status
   ## data
-  site_status_data <- tibble::tibble(name = site_ids)
   status_data <- matrix(0, nrow = n_sites, ncol = n_actions)
   zero_idx <- sample.int(
     length(status_data), floor(length(status_data) * prop_locked_out))
   status_data[zero_idx] <- 0
   status_data <- tibble::as_tibble(as.data.frame(status_data))
   names(status_data) <-  as.character(glue::glue(
-    parameters$site_status_sheet$action_status_header,
+    parameters$status_sheet$action_status_header,
     action_ids = action_ids))
-  site_status_data <- dplyr::bind_cols(site_status_data, status_data)
+  status_data <- dplyr::bind_cols(
+    tibble::tibble(name = site_ids),
+    status_data
+  )
   ## comments
-  site_status_comments <- template_site_status_comments(
+  status_comments <- template_status_comments(
     site_descriptions = site_descriptions,
     action_descriptions = action_descriptions,
     parameters = parameters
@@ -76,20 +78,20 @@ simulate_data <- function(
 
   # simulate site feasibility
   ## data
-  site_feasibility_data <- tibble::tibble(name = site_ids)
   feasibility_data <- matrix(1, nrow = n_sites, ncol = n_actions)
   zero_idx <- sample.int(
     length(feasibility_data), floor(length(feasibility_data) * prop_locked_out))
   feasibility_data[zero_idx] <- 0
   feasibility_data <- tibble::as_tibble(as.data.frame(feasibility_data))
   names(feasibility_data) <-  as.character(glue::glue(
-    parameters$site_feasibility_sheet$action_status_header,
+    parameters$feasibility_sheet$action_status_header,
     action_ids = action_ids))
-  site_feasibility_data <- dplyr::bind_cols(
-    site_feasibility_data, feasibility_data
+  feasibility_data <- dplyr::bind_cols(
+    tibble::tibble(name = site_ids),
+    feasibility_data
   )
   ## comments
-  site_feasibility_comments <- template_site_feasibility_comments(
+  feasibility_comments <- template_feasibility_comments(
     site_descriptions = site_descriptions,
     action_descriptions = action_descriptions,
     parameters = parameters
@@ -143,13 +145,13 @@ simulate_data <- function(
     feature_descriptions = feature_descriptions,
     action_descriptions = action_descriptions,
     site_data = site_data,
-    site_status_data = site_status_data,
-    site_feasibility_data = site_feasibility_data,
+    status_data = status_data,
+    feasibility_data = feasibility_data,
     feature_data = feature_data,
     action_expectation_data = action_expectation_data,
     site_comments = site_comments,
-    site_status_comments = site_status_comments,
-    site_feasibility_comments = site_feasibility_comments,
+    status_comments = status_comments,
+    feasibility_comments = feasibility_comments,
     feature_comments = feature_comments,
     action_expectation_comments = action_expectation_comments
   )

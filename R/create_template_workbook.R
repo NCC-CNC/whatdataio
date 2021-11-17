@@ -51,12 +51,12 @@ create_template_workbook <- function(site_ids, site_descriptions,
     site_longitudes = site_longitudes,
     site_latitudes = site_latitudes
   )
-  site_status_data <- template_site_status_data(
+  status_data <- template_status_data(
     site_ids = site_ids,
     action_ids = action_ids,
     parameters = parameters
   )
-  site_feasibility_data <- template_site_feasibility_data(
+  feasibility_data <- template_feasibility_data(
     site_ids = site_ids,
     action_ids = action_ids,
     parameters = parameters
@@ -77,12 +77,12 @@ create_template_workbook <- function(site_ids, site_descriptions,
     action_descriptions = action_descriptions,
     parameters = parameters
   )
-  site_status_comments <- template_site_status_comments(
+  status_comments <- template_status_comments(
     site_descriptions = site_descriptions,
     action_descriptions = action_descriptions,
     parameters = parameters
   )
-  site_feasibility_comments <- template_site_feasibility_comments(
+  feasibility_comments <- template_feasibility_comments(
     site_descriptions = site_descriptions,
     action_descriptions = action_descriptions,
     parameters = parameters)
@@ -107,18 +107,18 @@ create_template_workbook <- function(site_ids, site_descriptions,
   )
 
   ## site action status sheet
-  x <- add_site_status_sheet(
+  x <- add_status_data_sheet(
     x = x,
-    data = site_status_data,
-    comments = site_status_comments,
+    data = status_data,
+    comments = status_comments,
     parameters = parameters
   )
 
   ## site action feasibility sheet
-  x <- add_site_feasibility_sheet(
+  x <- add_feasibility_data_sheet(
     x = x,
-    data = site_feasibility_data,
-    comments = site_feasibility_comments,
+    data = feasibility_data,
+    comments = feasibility_comments,
     parameters = parameters
   )
 
