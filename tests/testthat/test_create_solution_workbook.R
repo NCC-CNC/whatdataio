@@ -1,4 +1,4 @@
-context("create_export_workbook")
+context("create_solution_workbook")
 
 test_that("expected result", {
   # initialization
@@ -6,7 +6,7 @@ test_that("expected result", {
   parameters <- read_data_configuration()
   d <- simulate_data(5, 4, 3, parameters)
   # main code
-  w <- create_export_workbook(
+  w <- create_solution_workbook(
     ## variables
     site_ids = d$site_ids,
     feature_ids = d$feature_ids,
@@ -16,13 +16,11 @@ test_that("expected result", {
     action_descriptions = d$action_descriptions,
     ## data
     site_data = d$site_data,
-    status_data = d$status_data,
     feasibility_data = d$feasibility_data,
     feature_data = d$feature_data,
     action_expectation_data = d$action_expectation_data,
     ## data comments
     site_comments = d$site_comments,
-    status_comments = d$status_comments,
     feasibility_comments = d$feasibility_comments,
     feature_comments = d$feature_comments,
     action_expectation_comments = d$action_expectation_comments,

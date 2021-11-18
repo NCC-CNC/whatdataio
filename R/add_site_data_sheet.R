@@ -128,21 +128,37 @@ add_site_data_sheet <- function(x, data, comments, parameters) {
     rows = seq_len(nrow(data)) + start_row, cols = 2,
     type = "decimal", operator = "between",
     value = c(-180, 180), allowBlank = FALSE,
-    showInputMsg = TRUE, showErrorMsg = TRUE)
+    showInputMsg = TRUE, showErrorMsg = TRUE
+  )
 
   ## latitude column
   openxlsx::dataValidation(x, p$sheet_name,
     rows = seq_len(nrow(data)) + start_row, cols = 3,
     type = "decimal", operator = "between",
     value = c(-90, 90), allowBlank = FALSE,
-    showInputMsg = TRUE, showErrorMsg = TRUE)
+    showInputMsg = TRUE, showErrorMsg = TRUE
+  )
+
+    ## status column
+    suppressWarnings(
+      openxlsx::dataValidation(x, p$sheet_name,
+        rows = seq_len(nrow(data)) + start_row, cols = 4,
+        type = "list", operator = "between",
+        value = paste0(
+          "'", p$sheet_name, "'!$A$",
+          start_row + 1, ":$A$", start_row + nrow(data)
+        ),
+        allowBlank = TRUE, showInputMsg = TRUE, showErrorMsg = TRUE
+      )
+    )
 
   ## cost data columns
   openxlsx::dataValidation(x, p$sheet_name,
-    rows = seq_len(nrow(data)) + start_row, cols = seq(4, ncol(data)),
+    rows = seq_len(nrow(data)) + start_row, cols = seq(5, ncol(data)),
     type = "decimal", operator = "between",
     value = c(0, 1e+6), allowBlank = FALSE,
-    showInputMsg = TRUE, showErrorMsg = TRUE)
+    showInputMsg = TRUE, showErrorMsg = TRUE
+  )
 
   # add comments
   ## add comments for header

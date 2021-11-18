@@ -1,9 +1,9 @@
 #' @include internal.R
 NULL
 
-#' Create export workbook
+#' Create solution workbook
 #'
-#' This function creates an Excel Workbook with results.
+#' This function creates an Excel Workbook with data and results.
 #'
 #' @param site_ids `character` identifiers for sites.
 #'   No missing (`NA`) values are permitted. This object must contain at least
@@ -32,8 +32,6 @@ NULL
 #'
 #' @param site_data `data.frame` containing site data.
 #'
-#' @param status_data `data.frame`containing status data.
-#'
 #' @param feasibility_data `data.frame`containing feasibility data.
 #'
 #' @param feature_data `data.frame` containing feature data.
@@ -48,8 +46,6 @@ NULL
 #' @param feature_results_data `data.frame` containing feature results data.
 #'
 #' @param site_comments `data.frame` containing site comments.
-#'
-#' @param status_comments `data.frame`containing status comments.
 #'
 #' @param feasibility_comments `data.frame`containing feasibility
 #'  comments.
@@ -73,16 +69,16 @@ NULL
 #' @return `Workbook` object.
 #'
 #' @export
-create_export_workbook <- function(
+create_solution_workbook <- function(
   ## variables
   site_ids, site_descriptions,
   feature_ids, feature_descriptions,
   action_ids, action_descriptions,
   ## data
-  site_data, status_data, feasibility_data,
+  site_data, feasibility_data,
   feature_data, action_expectation_data,
   ## data comments
-  site_comments, status_comments, feasibility_comments,
+  site_comments, feasibility_comments,
   feature_comments, action_expectation_comments,
   ## results
   summary_results_data, site_results_data, feature_results_data,
@@ -105,18 +101,15 @@ create_export_workbook <- function(
     identical(length(action_ids), length(action_descriptions)),
     ## input data
     inherits(site_data, "data.frame"),
-    inherits(status_data, "data.frame"),
     inherits(feasibility_data, "data.frame"),
     inherits(feature_data, "data.frame"),
     inherits(action_expectation_data, "list"),
     ## input comments
     inherits(site_comments, "data.frame"),
-    inherits(status_comments, "data.frame"),
     inherits(feasibility_comments, "data.frame"),
     inherits(feature_comments, "data.frame"),
     inherits(action_expectation_comments, "list"),
     identical(dim(site_data), dim(site_comments)),
-    identical(dim(status_data), dim(status_comments)),
     identical(dim(feasibility_data), dim(feasibility_comments)),
     identical(dim(feature_data), dim(feature_comments)),
     identical(dim(action_expectation_data), dim(action_expectation_comments)),
@@ -143,14 +136,6 @@ create_export_workbook <- function(
     x = x,
     data = site_data,
     comments = site_comments,
-    parameters = parameters
-  )
-
-  ## status sheet
-  x <- add_status_data_sheet(
-    x = x,
-    data = status_data,
-    comments = status_comments,
     parameters = parameters
   )
 

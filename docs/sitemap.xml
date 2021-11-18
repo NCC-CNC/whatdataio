@@ -13,7 +13,10 @@
     <loc>/news/index.html</loc>
   </url>
   <url>
-    <loc>/reference/create_export_workbook.html</loc>
+    <loc>/reference/create_project_workbook.html</loc>
+  </url>
+  <url>
+    <loc>/reference/create_solution_workbook.html</loc>
   </url>
   <url>
     <loc>/reference/create_template_workbook.html</loc>

@@ -8,7 +8,7 @@ format_locked_data(
   site_ids,
   feature_ids,
   action_ids,
-  site_status_data,
+  feasibility_data,
   parameters
 )
 }
@@ -19,7 +19,7 @@ format_locked_data(
 
 \item{action_ids}{\code{character} identifiers of actions.}
 
-\item{site_status_data}{\code{data.frame} with site status data.}
+\item{feasibility_data}{\code{data.frame} with feasibility data.}
 
 \item{parameters}{\code{list} object with configuration parameters.}
 }

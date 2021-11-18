@@ -155,20 +155,20 @@ format_weights_data <- function(site_ids, feature_ids, action_ids,
 
 #' Format locked data
 #'
-#' @param site_status_data `data.frame` with site status data.
+#' @param feasibility_data `data.frame` with feasibility data.
 #' @inheritParams format_pu_data
 #'
 #' @return `data.frame` with locked data for prioritizations.
 #'
 #' @export
 format_locked_data <- function(site_ids, feature_ids, action_ids,
-                               site_status_data, parameters) {
+                               feasibility_data, parameters) {
   # assert arguments are valid
   assertthat::assert_that(
     is.character(site_ids),
     is.character(feature_ids),
     is.character(action_ids),
-    inherits(site_status_data, "data.frame"),
+    inherits(feasibility_data, "data.frame"),
     is.list(parameters)
   )
   # define variables to avoid CRAN checks throwing ERRORS for lazy evaluation
@@ -177,7 +177,7 @@ format_locked_data <- function(site_ids, feature_ids, action_ids,
   site <- NULL
 
   # prepare data
-  d <- site_status_data
+  d <- feasibility_data
   names(d) <- c("site", action_ids)
   d <- tidyr::gather(d, action, status, -site)
   d <- d[d$status <= 0.5, , drop = FALSE]

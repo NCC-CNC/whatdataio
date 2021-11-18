@@ -12,7 +12,6 @@ test_that("expected result", {
   expect_equal(x$feature_names, c("a", "s", "d", "f", "g"))
   expect_equal(x$action_names, c("z", "x", "c", "v", "b"))
   expect_is(x$site_data, "tbl_df")
-  expect_is(x$status_data, "tbl_df")
   expect_is(x$feasibility_data, "tbl_df")
   expect_is(x$feature_data, "tbl_df")
   expect_is(x$action_expectation_data, "list")

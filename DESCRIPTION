@@ -32,7 +32,7 @@ Suggests:
     rmarkdown (>= 1.10),
     gurobi (>= 9.1.2),
 Depends:
-    R (>= 3.5.0),
+    R (>= 3.5.0)
 License: GPL-3
 Encoding: UTF-8
 Language: en-US
@@ -48,9 +48,9 @@ Collate:
     'add_feature_results_sheet.R'
     'add_site_data_sheet.R'
     'add_site_results_sheet.R'
-    'add_status_data_sheet.R'
     'add_summary_results_sheet.R'
-    'create_export_workbook.R'
+    'create_project_workbook.R'
+    'create_solution_workbook.R'
     'create_template_workbook.R'
     'format_data.R'
     'has_valid_spreadsheet_data.R'

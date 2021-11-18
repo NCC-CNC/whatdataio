@@ -29,42 +29,16 @@ template_site_data <- function(site_ids, action_ids, parameters,
   d <- tibble::tibble(
     site_id = site_ids,
     longitude = site_longitudes,
-    latitude = site_latitudes
+    latitude = site_latitudes,
+    status = ""
   )
-  names(d) <- c(p$name_header, p$longitude_header, p$latitude_header)
+  names(d) <- c(
+    p$name_header, p$longitude_header, p$latitude_header, p$status_header
+  )
   d2 <- tibble::as_tibble(as.data.frame(matrix(
       NA_real_, ncol = length(action_ids))))
   names(d2) <- as.character(glue::glue(
       p$action_cost_header, action_ids = action_ids))
-  d <- dplyr::bind_cols(d, d2)
-  # return data
-  d
-}
-
-#' Template status data
-#'
-#' Create status data for the template workbook.
-#'
-#' @inheritParams create_template_workbook
-#'
-#' @return `data.frame` object.
-#'
-#' @noRd
-template_status_data <- function(site_ids, action_ids, parameters) {
-  # assert arguments are valid
-  assertthat::assert_that(
-    is.character(site_ids), assertthat::noNA(site_ids),
-    is.character(action_ids), assertthat::noNA(action_ids),
-    is.list(parameters))
-  # extract parameters
-  p <- parameters$status_data_sheet
-  # create data
-  d <- tibble::tibble(site_id = site_ids)
-  names(d) <- c(p$name_header)
-  d2 <- tibble::as_tibble(as.data.frame(matrix(
-    0L, ncol = length(action_ids))))
-  names(d2) <- as.character(glue::glue(
-      p$action_status_header, action_ids = action_ids))
   d <- dplyr::bind_cols(d, d2)
   # return data
   d
@@ -93,7 +67,7 @@ template_feasibility_data <- function(site_ids, action_ids, parameters) {
   d2 <- tibble::as_tibble(as.data.frame(matrix(
       1L, ncol = length(action_ids))))
   names(d2) <- as.character(glue::glue(
-      p$action_status_header, action_ids = action_ids))
+      p$action_feasibility_header, action_ids = action_ids))
   d <- dplyr::bind_cols(d, d2)
   # return data
   d
@@ -128,7 +102,7 @@ template_feature_data <- function(feature_ids, parameters) {
 #'
 #' @param action_id `character` id of the action.
 #'
-#' @inheritParams create_export_workbook
+#' @inheritParams create_solution_workbook
 #'
 #' @return `data.frame` object.
 #'

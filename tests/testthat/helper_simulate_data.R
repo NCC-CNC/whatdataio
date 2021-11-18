@@ -37,11 +37,15 @@ simulate_data <- function(
   site_data <- tibble::tibble(
     name = site_ids,
     x = runif(n_sites),
-    y = runif(n_sites))
+    y = runif(n_sites),
+    status = sample(action_ids, n_sites, replace = TRUE)
+  )
   names(site_data) <- c(
     parameters$site_data_sheet$name_header,
     parameters$site_data_sheet$longitude_header,
-    parameters$site_data_sheet$latitude_header)
+    parameters$site_data_sheet$latitude_header,
+    parameters$site_data_sheet$status_header
+  )
   cost_data <- matrix(
     runif(n_sites * n_actions) * 5, nrow = n_sites, ncol = n_actions)
   cost_data <- tibble::as_tibble(as.data.frame(cost_data))
@@ -50,27 +54,6 @@ simulate_data <- function(
   site_data <- dplyr::bind_cols(site_data, cost_data)
   ## comments
   site_comments <- template_site_comments(
-    site_descriptions = site_descriptions,
-    action_descriptions = action_descriptions,
-    parameters = parameters
-  )
-
-  # simulate site status
-  ## data
-  status_data <- matrix(0, nrow = n_sites, ncol = n_actions)
-  zero_idx <- sample.int(
-    length(status_data), floor(length(status_data) * prop_locked_out))
-  status_data[zero_idx] <- 0
-  status_data <- tibble::as_tibble(as.data.frame(status_data))
-  names(status_data) <-  as.character(glue::glue(
-    parameters$status_sheet$action_status_header,
-    action_ids = action_ids))
-  status_data <- dplyr::bind_cols(
-    tibble::tibble(name = site_ids),
-    status_data
-  )
-  ## comments
-  status_comments <- template_status_comments(
     site_descriptions = site_descriptions,
     action_descriptions = action_descriptions,
     parameters = parameters
@@ -145,12 +128,10 @@ simulate_data <- function(
     feature_descriptions = feature_descriptions,
     action_descriptions = action_descriptions,
     site_data = site_data,
-    status_data = status_data,
     feasibility_data = feasibility_data,
     feature_data = feature_data,
     action_expectation_data = action_expectation_data,
     site_comments = site_comments,
-    status_comments = status_comments,
     feasibility_comments = feasibility_comments,
     feature_comments = feature_comments,
     action_expectation_comments = action_expectation_comments

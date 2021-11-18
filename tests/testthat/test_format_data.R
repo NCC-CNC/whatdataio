@@ -65,7 +65,7 @@ test_that("format_locked_data", {
 
   # format data
   f <- format_locked_data(
-      d$site_ids, d$feature_ids, d$action_ids, d$status_data,
+      d$site_ids, d$feature_ids, d$action_ids, d$feasibility_data,
       parameters)
 
   # run tests

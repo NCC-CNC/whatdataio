@@ -13,21 +13,6 @@ test_that("template_site_comments", {
   expect_true(all(an %in% names(d)))
 })
 
-test_that("template_status_comments", {
-  # data
-  p <- read_data_configuration()
-  sn <- paste0("s", seq_len(5))
-  fn <- paste0("f", seq_len(3))
-  an <- paste0("a", seq_len(2))
-  d <- template_status_comments(sn, an, p)
-  # tests
-  expect_is(d, "data.frame")
-  expect_equal(d[[1]], sn)
-  expect_true(all(an %in% names(d)))
-  expect_equal(d[[2]], rep(NA_integer_, 5))
-  expect_equal(d[[3]], rep(NA_integer_, 5))
-})
-
 test_that("template_feasibility_comments", {
   # data
   p <- read_data_configuration()

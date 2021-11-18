@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Format locked data — format_locked_data • whatdataio</title>
+<title>Create data workbook — create_project_workbook • whatdataio</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Format locked data — format_locked_data" />
-<meta property="og:description" content="Format locked data" />
+<meta property="og:title" content="Create data workbook — create_project_workbook" />
+<meta property="og:description" content="This function creates an Excel Workbook with data." />
 
 
 
@@ -113,20 +113,30 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Format locked data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/NCC-CNC/whatdata/blob/master/R/format_data.R'><code>R/format_data.R</code></a></small>
-    <div class="hidden name"><code>format_locked_data.Rd</code></div>
+    <h1>Create data workbook</h1>
+    <small class="dont-index">Source: <a href='https://github.com/NCC-CNC/whatdata/blob/master/R/create_project_workbook.R'><code>R/create_project_workbook.R</code></a></small>
+    <div class="hidden name"><code>create_project_workbook.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Format locked data</p>
+    <p>This function creates an Excel Workbook with data.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>format_locked_data</span><span class='op'>(</span>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>create_project_workbook</span><span class='op'>(</span>
   <span class='va'>site_ids</span>,
+  <span class='va'>site_descriptions</span>,
   <span class='va'>feature_ids</span>,
+  <span class='va'>feature_descriptions</span>,
   <span class='va'>action_ids</span>,
+  <span class='va'>action_descriptions</span>,
+  <span class='va'>site_data</span>,
   <span class='va'>feasibility_data</span>,
+  <span class='va'>feature_data</span>,
+  <span class='va'>action_expectation_data</span>,
+  <span class='va'>site_comments</span>,
+  <span class='va'>feasibility_comments</span>,
+  <span class='va'>feature_comments</span>,
+  <span class='va'>action_expectation_comments</span>,
   <span class='va'>parameters</span>
 <span class='op'>)</span></code></pre></div>
 
@@ -135,29 +145,86 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>site_ids</th>
-      <td><p><code>character</code> identifiers of sites.</p></td>
+      <td><p><code>character</code> identifiers for sites.
+No missing (<code>NA</code>) values are permitted. This object must contain at least
+one value.</p></td>
+    </tr>
+    <tr>
+      <th>site_descriptions</th>
+      <td><p><code>character</code> descriptions of sites.
+No missing (<code>NA</code>) values are permitted. This object must contain at least
+one value.</p></td>
     </tr>
     <tr>
       <th>feature_ids</th>
-      <td><p><code>character</code> identifiers of features.</p></td>
+      <td><p><code>character</code> identifiers for biodiversity features.
+No missing (<code>NA</code>) values are permitted. This object must contain at least
+one value.</p></td>
+    </tr>
+    <tr>
+      <th>feature_descriptions</th>
+      <td><p><code>character</code> descriptions of biodiversity
+features.
+No missing (<code>NA</code>) values are permitted. This object must contain at least
+one value.</p></td>
     </tr>
     <tr>
       <th>action_ids</th>
-      <td><p><code>character</code> identifiers of actions.</p></td>
+      <td><p><code>character</code> identifiers for management actions.
+No missing (<code>NA</code>) values are permitted. This object must contain at least
+one value.</p></td>
+    </tr>
+    <tr>
+      <th>action_descriptions</th>
+      <td><p><code>character</code> descriptions of management actions.
+No missing (<code>NA</code>) values are permitted. This object must contain at least
+one value.</p></td>
+    </tr>
+    <tr>
+      <th>site_data</th>
+      <td><p><code>data.frame</code> containing site data.</p></td>
     </tr>
     <tr>
       <th>feasibility_data</th>
-      <td><p><code>data.frame</code> with feasibility data.</p></td>
+      <td><p><code>data.frame</code>containing feasibility data.</p></td>
+    </tr>
+    <tr>
+      <th>feature_data</th>
+      <td><p><code>data.frame</code> containing feature data.</p></td>
+    </tr>
+    <tr>
+      <th>action_expectation_data</th>
+      <td><p><code>list</code> of <code>data.frame</code> objects
+containing expectation data.</p></td>
+    </tr>
+    <tr>
+      <th>site_comments</th>
+      <td><p><code>data.frame</code> containing site comments.</p></td>
+    </tr>
+    <tr>
+      <th>feasibility_comments</th>
+      <td><p><code>data.frame</code>containing feasibility
+comments.</p></td>
+    </tr>
+    <tr>
+      <th>feature_comments</th>
+      <td><p><code>data.frame</code> containing feature comments.</p></td>
+    </tr>
+    <tr>
+      <th>action_expectation_comments</th>
+      <td><p><code>list</code> of <code>data.frame</code> objects
+containing expectation comments.</p></td>
     </tr>
     <tr>
       <th>parameters</th>
-      <td><p><code>list</code> object with configuration parameters.</p></td>
+      <td><p><code>list</code> object containing parameters to customize
+appearance of worksheet.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>data.frame</code> with locked data for prioritizations.</p>
+    <p><code>Workbook</code> object.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

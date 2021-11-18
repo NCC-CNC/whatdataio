@@ -26,13 +26,13 @@ read_spreadsheet_data <- function(x, parameters) {
 
   # extract parameters
   site_data_sheet_name <- parameters$site_data_sheet$sheet_name
-  status_data_sheet_name <- parameters$status_data_sheet$sheet_name
   feasibility_data_sheet_name <- parameters$feasibility_data_sheet$sheet_name
   feature_data_sheet_name <- parameters$feature_data_sheet$sheet_name
   action_expectation_sheet_names <- setdiff(
     names(w),
-    c(site_data_sheet_name, feasibility_data_sheet_name,
-      status_data_sheet_name, feature_data_sheet_name
+    c(site_data_sheet_name,
+      feasibility_data_sheet_name,
+      feature_data_sheet_name
     )
   )
 
@@ -41,13 +41,6 @@ read_spreadsheet_data <- function(x, parameters) {
   site_data <- suppressWarnings(openxlsx::read.xlsx(
     xlsxFile = x,
     sheet = site_data_sheet_name,
-    colNames = TRUE,
-    startRow = 3
-  ))
-  ## status data
-  status_data <- suppressWarnings(openxlsx::read.xlsx(
-    xlsxFile = x,
-    sheet = status_data_sheet_name,
     colNames = TRUE,
     startRow = 3
   ))
@@ -76,7 +69,6 @@ read_spreadsheet_data <- function(x, parameters) {
 
   # convert data to tibble format
   site_data <- tibble::as_tibble(site_data)
-  status_data <- tibble::as_tibble(status_data)
   feasibility_data <- tibble::as_tibble(feasibility_data)
   feature_data <- tibble::as_tibble(feature_data)
   action_expectation_data <- lapply(action_expectation_data, tibble::as_tibble)
@@ -85,13 +77,6 @@ read_spreadsheet_data <- function(x, parameters) {
   site_data_names <- unlist(
     openxlsx::read.xlsx(
       w, sheet = site_data_sheet_name, colNames = FALSE,
-      cols = seq_len(ncol(site_data)), rows = 3
-    ),
-    recursive = TRUE, use.names = FALSE
-  )
-  status_data_names <- unlist(
-    openxlsx::read.xlsx(
-      w, sheet = status_data_sheet_name, colNames = FALSE,
       cols = seq_len(ncol(site_data)), rows = 3
     ),
     recursive = TRUE, use.names = FALSE
@@ -120,7 +105,6 @@ read_spreadsheet_data <- function(x, parameters) {
 
   # fix column names
   names(site_data) <- site_data_names
-  names(status_data) <- status_data_names
   names(feasibility_data) <- feasibility_data_names
   names(feature_data) <- feature_data_names
   action_expectation_data <- lapply(action_expectation_data, function(x) {
@@ -133,12 +117,6 @@ read_spreadsheet_data <- function(x, parameters) {
   site_data[[1]] <- as.character(site_data[[1]])
   for (i in seq(2, ncol(site_data))) {
     site_data[[i]] <- as.numeric(site_data[[i]])
-  }
-
-  ## status data
-  status_data[[1]] <- as.character(status_data[[1]])
-  for (i in seq(2, ncol(status_data))) {
-    status_data[[i]] <- as.numeric(status_data[[i]])
   }
 
   ## site feasibility data
@@ -185,7 +163,6 @@ read_spreadsheet_data <- function(x, parameters) {
       feature_data[[parameters$feature_data_sheet$name_header]],
     action_names = action_names,
     site_data = site_data,
-    status_data = status_data,
     feasibility_data = feasibility_data,
     feature_data = feature_data,
     action_expectation_data = action_expectation_data

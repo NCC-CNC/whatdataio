@@ -5,7 +5,7 @@ NULL
 #'
 #' This function creates a data template Excel Workbook.
 #'
-#' @inheritParams create_export_workbook
+#' @inheritParams create_solution_workbook
 #'
 #' @param site_longitudes `numeric` Longitudes for sites.
 #'  Defaults to an empty `character` vector equal to the number of sites.
@@ -13,7 +13,7 @@ NULL
 #' @param site_latitudes `numeric` Latitudes for sites.
 #'  Defaults to an empty `character` vector equal to the number of sites.
 #'
-#' @inherit create_export_workbook return
+#' @inherit create_solution_workbook return
 #'
 #' @export
 create_template_workbook <- function(site_ids, site_descriptions,
@@ -51,11 +51,6 @@ create_template_workbook <- function(site_ids, site_descriptions,
     site_longitudes = site_longitudes,
     site_latitudes = site_latitudes
   )
-  status_data <- template_status_data(
-    site_ids = site_ids,
-    action_ids = action_ids,
-    parameters = parameters
-  )
   feasibility_data <- template_feasibility_data(
     site_ids = site_ids,
     action_ids = action_ids,
@@ -73,11 +68,6 @@ create_template_workbook <- function(site_ids, site_descriptions,
 
   # create template comments (these contain the names)
   site_comments <- template_site_comments(
-    site_descriptions = site_descriptions,
-    action_descriptions = action_descriptions,
-    parameters = parameters
-  )
-  status_comments <- template_status_comments(
     site_descriptions = site_descriptions,
     action_descriptions = action_descriptions,
     parameters = parameters
@@ -106,15 +96,7 @@ create_template_workbook <- function(site_ids, site_descriptions,
     parameters = parameters
   )
 
-  ## site action status sheet
-  x <- add_status_data_sheet(
-    x = x,
-    data = status_data,
-    comments = status_comments,
-    parameters = parameters
-  )
-
-  ## site action feasibility sheet
+  ## feasibility sheet
   x <- add_feasibility_data_sheet(
     x = x,
     data = feasibility_data,

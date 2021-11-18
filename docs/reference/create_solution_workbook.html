@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create export workbook — create_export_workbook • whatdataio</title>
+<title>Create solution workbook — create_solution_workbook • whatdataio</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Create export workbook — create_export_workbook" />
-<meta property="og:description" content="This function creates an Excel Workbook with results." />
+<meta property="og:title" content="Create solution workbook — create_solution_workbook" />
+<meta property="og:description" content="This function creates an Excel Workbook with data and results." />
 
 
 
@@ -113,16 +113,16 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create export workbook</h1>
-    <small class="dont-index">Source: <a href='https://github.com/NCC-CNC/whatdata/blob/master/R/create_export_workbook.R'><code>R/create_export_workbook.R</code></a></small>
-    <div class="hidden name"><code>create_export_workbook.Rd</code></div>
+    <h1>Create solution workbook</h1>
+    <small class="dont-index">Source: <a href='https://github.com/NCC-CNC/whatdata/blob/master/R/create_solution_workbook.R'><code>R/create_solution_workbook.R</code></a></small>
+    <div class="hidden name"><code>create_solution_workbook.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function creates an Excel Workbook with results.</p>
+    <p>This function creates an Excel Workbook with data and results.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>create_export_workbook</span><span class='op'>(</span>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>create_solution_workbook</span><span class='op'>(</span>
   <span class='va'>site_ids</span>,
   <span class='va'>site_descriptions</span>,
   <span class='va'>feature_ids</span>,
@@ -130,12 +130,10 @@
   <span class='va'>action_ids</span>,
   <span class='va'>action_descriptions</span>,
   <span class='va'>site_data</span>,
-  <span class='va'>status_data</span>,
   <span class='va'>feasibility_data</span>,
   <span class='va'>feature_data</span>,
   <span class='va'>action_expectation_data</span>,
   <span class='va'>site_comments</span>,
-  <span class='va'>status_comments</span>,
   <span class='va'>feasibility_comments</span>,
   <span class='va'>feature_comments</span>,
   <span class='va'>action_expectation_comments</span>,
@@ -193,10 +191,6 @@ one value.</p></td>
       <td><p><code>data.frame</code> containing site data.</p></td>
     </tr>
     <tr>
-      <th>status_data</th>
-      <td><p><code>data.frame</code>containing status data.</p></td>
-    </tr>
-    <tr>
       <th>feasibility_data</th>
       <td><p><code>data.frame</code>containing feasibility data.</p></td>
     </tr>
@@ -212,10 +206,6 @@ containing expectation data.</p></td>
     <tr>
       <th>site_comments</th>
       <td><p><code>data.frame</code> containing site comments.</p></td>
-    </tr>
-    <tr>
-      <th>status_comments</th>
-      <td><p><code>data.frame</code>containing status comments.</p></td>
     </tr>
     <tr>
       <th>feasibility_comments</th>

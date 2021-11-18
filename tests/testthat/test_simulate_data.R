@@ -25,8 +25,6 @@ test_that("expected_result", {
   ## data
   expect_is(d$site_data, "data.frame")
   expect_equal(nrow(d$site_data), 5)
-  expect_is(d$status_data, "data.frame")
-  expect_equal(nrow(d$status_data), 5)
   expect_is(d$feasibility_data, "data.frame")
   expect_equal(nrow(d$feasibility_data), 5)
   expect_is(d$feature_data, "data.frame")
@@ -36,8 +34,6 @@ test_that("expected_result", {
   ## comments
   expect_is(d$site_comments, "data.frame")
   expect_equal(nrow(d$site_comments), 5)
-  expect_is(d$status_comments, "data.frame")
-  expect_equal(nrow(d$status_comments), 5)
   expect_is(d$feasibility_comments, "data.frame")
   expect_equal(nrow(d$feasibility_comments), 5)
   expect_is(d$feature_comments, "data.frame")

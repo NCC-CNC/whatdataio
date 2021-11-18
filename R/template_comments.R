@@ -5,7 +5,7 @@ NULL
 #'
 #' Create site comments for the template workbook.
 #'
-#' @inheritParams create_template_workbook
+#' @inheritParams create_solution_workbook
 #'
 #' @return `data.frame` object.
 #'
@@ -24,41 +24,14 @@ template_site_comments <- function(site_descriptions,
   d <- tibble::tibble(
     site_id = site_descriptions,
     longitude = NA_character_,
-    latitude = NA_character_
+    latitude = NA_character_,
+    status = NA_character_
   )
-  names(d) <- c(p$name_header, p$longitude_header, p$latitude_header)
+  names(d) <- c(
+    p$name_header, p$longitude_header, p$latitude_header, p$status_header
+  )
   d2 <- tibble::as_tibble(as.data.frame(matrix(
       NA_real_, ncol = length(action_descriptions))))
-  names(d2) <- as.character(action_descriptions)
-  d <- dplyr::bind_cols(d, d2)
-  # return data
-  d
-}
-
-#' Template status data
-#'
-#' Create status comments for the template workbook.
-#'
-#' @inheritParams create_template_workbook
-#'
-#' @return `data.frame` object.
-#'
-#' @noRd
-template_status_comments <- function(site_descriptions,
-                                     action_descriptions,
-                                     parameters) {
-  # assert arguments are valid
-  assertthat::assert_that(
-    is.character(site_descriptions), assertthat::noNA(site_descriptions),
-    is.character(action_descriptions), assertthat::noNA(action_descriptions),
-    is.list(parameters))
-  # extract parameters
-  p <- parameters$status_sheet
-  # create data
-  d <- tibble::tibble(site_id = site_descriptions)
-  names(d) <- c(p$name_header)
-  d2 <- tibble::as_tibble(as.data.frame(matrix(
-      NA_integer_, ncol = length(action_descriptions))))
   names(d2) <- as.character(action_descriptions)
   d <- dplyr::bind_cols(d, d2)
   # return data
@@ -77,11 +50,22 @@ template_status_comments <- function(site_descriptions,
 template_feasibility_comments <- function(site_descriptions,
                                           action_descriptions,
                                           parameters) {
-  template_status_comments(
-    site_descriptions = site_descriptions,
-    action_descriptions = action_descriptions,
-    parameters = parameters
-  )
+  # assert arguments are valid
+  assertthat::assert_that(
+    is.character(site_descriptions), assertthat::noNA(site_descriptions),
+    is.character(action_descriptions), assertthat::noNA(action_descriptions),
+    is.list(parameters))
+  # extract parameters
+  p <- parameters$feasibility_data_sheet
+  # create data
+  d <- tibble::tibble(site_id = site_descriptions)
+  names(d) <- c(p$name_header)
+  d2 <- tibble::as_tibble(as.data.frame(matrix(
+      NA_integer_, ncol = length(action_descriptions))))
+  names(d2) <- as.character(action_descriptions)
+  d <- dplyr::bind_cols(d, d2)
+  # return data
+  d
 }
 
 #' Template feature data
@@ -117,7 +101,7 @@ template_feature_comments <- function(feature_descriptions, parameters) {
 #'
 #' @param action_id `character` id of the action.
 #'
-#' @inheritParams create_export_workbook
+#' @inheritParams create_solution_workbook
 #'
 #' @return `data.frame` object.
 #'
