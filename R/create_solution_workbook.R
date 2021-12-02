@@ -136,7 +136,8 @@ create_solution_workbook <- function(
     x = x,
     data = site_data,
     comments = site_comments,
-    parameters = parameters
+    parameters = parameters,
+    n_actions = length(action_ids)
   )
 
   ## feasibility sheet
@@ -188,6 +189,14 @@ create_solution_workbook <- function(
     data = feature_results_data,
     comments = feature_results_comments,
     parameters = parameters
+  )
+
+  ## meta data sheet
+  x <- add_meta_data_sheet(
+    x = x,
+    site_ids = site_ids,
+    action_ids = action_ids,
+    feature_ids = feature_ids
   )
 
   # return result

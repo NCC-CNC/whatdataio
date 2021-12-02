@@ -1,4 +1,4 @@
-context("add_site_data_sheet")
+context("add_meta_data_sheet")
 
 test_that("expected result", {
   # initialization
@@ -11,10 +11,10 @@ test_that("expected result", {
   fd <- paste0("Habitat for s", seq_len(3))
   an <- paste0("a", seq_len(2))
   ad <- paste0("Action a", seq_len(2))
-  dat <- template_site_data(sn, an, parameters)
-  com <- template_site_comments(sd, ad, parameters)
   # main code
-  w <- add_site_data_sheet(w, dat, com, parameters = parameters, length(an))
+  w <- add_meta_data_sheet(
+    w, site_ids = sn, action_ids = an, feature_ids = fn, hidden = FALSE
+  )
   # tests
   expect_is(w, "Workbook")
   suppressWarnings(openxlsx::saveWorkbook(w, f, returnValue = FALSE))

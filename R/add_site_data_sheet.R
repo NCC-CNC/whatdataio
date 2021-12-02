@@ -9,6 +9,8 @@ NULL
 #'
 #' @param data `data.frame` object with template data.
 #'
+#' @param n_actions `integer` number of actions.
+#'
 #' @param comments `data.frame` object with template comments.
 #'
 #' @details
@@ -19,7 +21,7 @@ NULL
 #' @return An updated `Workbook` object.
 #'
 #' @noRd
-add_site_data_sheet <- function(x, data, comments, parameters) {
+add_site_data_sheet <- function(x, data, comments, parameters, n_actions) {
   # validate arguments
   assertthat::assert_that(
     inherits(x, "Workbook"),
@@ -139,18 +141,15 @@ add_site_data_sheet <- function(x, data, comments, parameters) {
     showInputMsg = TRUE, showErrorMsg = TRUE
   )
 
-    ## status column
-    suppressWarnings(
-      openxlsx::dataValidation(x, p$sheet_name,
-        rows = seq_len(nrow(data)) + start_row, cols = 4,
-        type = "list", operator = "between",
-        value = paste0(
-          "'", p$sheet_name, "'!$A$",
-          start_row + 1, ":$A$", start_row + nrow(data)
-        ),
-        allowBlank = TRUE, showInputMsg = TRUE, showErrorMsg = TRUE
-      )
+  ## status column
+  suppressWarnings(
+    openxlsx::dataValidation(x, p$sheet_name,
+      rows = seq_len(nrow(data)) + start_row, cols = 4,
+      type = "list", operator = "between",
+      value = paste0("'meta'!$B$2:$B$", n_actions + 1),
+      allowBlank = TRUE, showInputMsg = TRUE, showErrorMsg = TRUE
     )
+  )
 
   ## cost data columns
   openxlsx::dataValidation(x, p$sheet_name,

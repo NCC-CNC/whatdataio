@@ -32,7 +32,8 @@ read_spreadsheet_data <- function(x, parameters) {
     names(w),
     c(site_data_sheet_name,
       feasibility_data_sheet_name,
-      feature_data_sheet_name
+      feature_data_sheet_name,
+      "meta"
     )
   )
 
