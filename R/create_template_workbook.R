@@ -124,12 +124,16 @@ create_template_workbook <- function(site_ids, site_descriptions,
     )
   }
 
-  ## meta data sheet
-  x <- add_meta_data_sheet(
+  ## metadata sheet
+  x <- add_metadata_sheet(
     x = x,
     site_ids = site_ids,
     action_ids = action_ids,
-    feature_ids = feature_ids
+    feature_ids = feature_ids,
+    site_descriptions = site_descriptions,
+    feature_descriptions = feature_descriptions,
+    action_descriptions = action_descriptions,
+    parameters = parameters
   )
 
   # return result

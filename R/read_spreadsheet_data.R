@@ -28,12 +28,13 @@ read_spreadsheet_data <- function(x, parameters) {
   site_data_sheet_name <- parameters$site_data_sheet$sheet_name
   feasibility_data_sheet_name <- parameters$feasibility_data_sheet$sheet_name
   feature_data_sheet_name <- parameters$feature_data_sheet$sheet_name
+  metadata_sheet_name <-parameters$metadata_sheet$sheet_name
   action_expectation_sheet_names <- setdiff(
     names(w),
     c(site_data_sheet_name,
       feasibility_data_sheet_name,
       feature_data_sheet_name,
-      "meta"
+      metadata_sheet_name
     )
   )
 
@@ -66,12 +67,21 @@ read_spreadsheet_data <- function(x, parameters) {
       suppressWarnings(openxlsx::read.xlsx(
         xlsxFile = x, sheet = y, colNames = TRUE, startRow = 3
       ))
-    })
+    }
+  )
+  ## meta sheet
+  metadata <- suppressWarnings(openxlsx::read.xlsx(
+    xlsxFile = x,
+    sheet = metadata_sheet_name,
+    colNames = TRUE,
+    startRow = 1
+  ))
 
   # convert data to tibble format
   site_data <- tibble::as_tibble(site_data)
   feasibility_data <- tibble::as_tibble(feasibility_data)
   feature_data <- tibble::as_tibble(feature_data)
+  metadata <- tibble::as_tibble(metadata)
   action_expectation_data <- lapply(action_expectation_data, tibble::as_tibble)
 
   # extract column names
@@ -148,21 +158,14 @@ read_spreadsheet_data <- function(x, parameters) {
     "action_", seq_along(action_expectation_data)
   )
 
-  # extract action names
-  action_names <- unlist(
-    unglue::unglue(
-      action_expectation_sheet_names,
-      parameters$action_expectation_sheet$sheet_name),
-    recursive = TRUE, use.names = FALSE
-  )
-
   # return result
   list(
-    site_names =
-      site_data[[parameters$site_data_sheet$name_header]],
-    feature_names =
-      feature_data[[parameters$feature_data_sheet$name_header]],
-    action_names = action_names,
+    site_ids = extract_strings(metadata$site_ids),
+    feature_ids = extract_strings(metadata$feature_ids),
+    action_ids =  extract_strings(metadata$action_ids),
+    site_descriptions = extract_strings(metadata$site_descriptions),
+    feature_descriptions = extract_strings(metadata$feature_descriptions),
+    action_descriptions = extract_strings(metadata$action_descriptions),
     site_data = site_data,
     feasibility_data = feasibility_data,
     feature_data = feature_data,

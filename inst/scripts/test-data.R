@@ -3,8 +3,8 @@
 devtools::load_all()
 
 ## define variables
-site_ids <- c("q", "w", "e", "r", "t")
-feature_ids <- c("a", "s", "d", "f", "g")
+site_ids <- c("q", "w", "e")
+feature_ids <- c("a", "s", "d", "f")
 action_ids <- c("z", "x", "c", "v", "b")
 parameters <- read_data_configuration()
 

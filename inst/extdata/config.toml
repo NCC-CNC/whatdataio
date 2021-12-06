@@ -45,6 +45,10 @@ main_message_height = 20
 main_message = "Please enter information for your “{action_ids}” action into this worksheet."
 sub_message = "Specifically, we ask that you input the amount of each biodiversity element (termed feature) that you would expect to occur within each site after you implemented the “{action_ids}” action. For example, these values could indicate that you expect a certain feature (e.g. species) to be present (using a value of “1”) or absent (using a value of “0”) within certain sites after this action is implemented. Alternatively, these could represent quantities such as expected population size (using count values) or amount of habitat (in km^2). Although different feature can have different units, each feature must have values in the same units. Thus all rows in the same column within this worksheet must be in the same units. Additionally, across worksheets for different actions (i.e. those starting with the word “Expectation”), the values in the same column must be in the same units (e.g. all values in the column B in each of these of these action worksheets must have the same units). After filling out this worksheet, every light gray cell should have a numerical value."
 
+[metadata_sheet]
+sheet_name = "metadata"
+hidden = true
+
 [site_results_sheet]
 sheet_name = "Site results"
 name_header = "Site ID"

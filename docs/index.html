@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">whatdataio</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.99999</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.99999</span>
       </span>
     </div>
 
@@ -49,7 +49,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/NCC-CNC/whatdata/">
+  <a href="https://github.com/NCC-CNC/whatdata/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -66,23 +66,23 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="whatdataio-import-and-export-management-action-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#whatdataio-import-and-export-management-action-data" class="anchor" aria-hidden="true"></a>whatdataio: Import and export management action data</h2>
+<div class="section level2">
+<h2 id="whatdataio-import-and-export-management-action-data">whatdataio: Import and export management action data<a class="anchor" aria-label="anchor" href="#whatdataio-import-and-export-management-action-data"></a>
+</h2>
 
-<div id="overview" class="section level3">
-<h3 class="hasAnchor">
-<a href="#overview" class="anchor" aria-hidden="true"></a>Overview</h3>
+<div class="section level3">
+<h3 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+</h3>
 <p>The <em>whatdataio R</em> package provides functions for importing and exporting management action data. It provides consistent data format standards for the <a href="https://github/NCC-CNC/whattodo" class="external-link">What To Do</a> and <a href="https://github/NCC-CNC/whattemplatemaker" class="external-link">What Template Maker</a> web applications. It is not designed for general purpose use outside of these applications.</p>
 </div>
-<div id="installation" class="section level3">
-<h3 class="hasAnchor">
-<a href="#installation" class="anchor" aria-hidden="true"></a>Installation</h3>
+<div class="section level3">
+<h3 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h3>
 <p>The package is only available from an <a href="https://github.com/NCC-CNC/whatdataio" class="external-link">online coding repository</a>. To install it, use the following R code.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span><span class="op">)</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"NCC-CNC/whatdataio"</span><span class="op">)</span></code></pre></div>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"NCC-CNC/whatdataio"</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
   </div>
@@ -91,28 +91,33 @@
     <div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/NCC-CNC/whatdata/">https://​github.com/​NCC-CNC/​whatdata/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/NCC-CNC/whatdata/issues">https://​github.com/​NCC-CNC/​whatdata/​issues</a>
-</li>
+<li><a href="https://github.com/NCC-CNC/whatdata/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/NCC-CNC/whatdata/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
 <div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://www.r-project.org/Licenses/GPL-3">GPL-3</a></li>
+<li><a href="https://www.r-project.org/Licenses/GPL-3" class="external-link">GPL-3</a></li>
 </ul>
 </div>
 
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing whatdataio</a></li>
+</ul>
+</div>
 
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>
-<a href="https://jeffrey-hanson.com">Jeffrey O Hanson</a> <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-4716-6134" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<a href="https://jeffrey-hanson.com" class="external-link">Jeffrey O Hanson</a> <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-4716-6134" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li>
-<a href="http://www.richard-schuster.com">Richard Schuster</a> <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0003-3191-7869" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<a href="http://www.richard-schuster.com" class="external-link">Richard Schuster</a> <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0003-3191-7869" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
 
@@ -138,7 +143,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
