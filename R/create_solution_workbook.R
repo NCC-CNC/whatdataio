@@ -45,23 +45,16 @@ NULL
 #'
 #' @param feature_results_data `data.frame` containing feature results data.
 #'
-#' @param site_comments `data.frame` containing site comments.
-#'
-#' @param feasibility_comments `data.frame`containing feasibility
-#'  comments.
-#'
-#' @param feature_comments `data.frame` containing feature comments.
-#'
-#' @param action_expectation_comments `list` of `data.frame` objects
-#'   containing expectation comments.
-#'
 #' @param summary_results_comments `data.frame` containing summary results
 #'  comments.
+#'  Defaults to `NULL` such that no comments are added.
 #'
 #' @param site_results_comments `data.frame` containing site results comments.
+#'  Defaults to `NULL` such that no comments are added.
 #'
 #' @param feature_results_comments `data.frame` containing feature results
 #'  comments.
+#'  Defaults to `NULL` such that no comments are added.
 #'
 #' @param parameters `list` object containing parameters to customize
 #'  appearance of worksheet.
@@ -77,13 +70,12 @@ create_solution_workbook <- function(
   ## data
   site_data, feasibility_data,
   feature_data, action_expectation_data,
-  ## data comments
-  site_comments, feasibility_comments,
-  feature_comments, action_expectation_comments,
   ## results
   summary_results_data, site_results_data, feature_results_data,
   ## results comments
-  summary_results_comments, site_results_comments, feature_results_comments,
+  summary_results_comments = NULL,
+  site_results_comments = NULL,
+  feature_results_comments = NULL,
   ## parameter
   parameters) {
   # validate arguments
@@ -104,28 +96,29 @@ create_solution_workbook <- function(
     inherits(feasibility_data, "data.frame"),
     inherits(feature_data, "data.frame"),
     inherits(action_expectation_data, "list"),
-    ## input comments
-    inherits(site_comments, "data.frame"),
-    inherits(feasibility_comments, "data.frame"),
-    inherits(feature_comments, "data.frame"),
-    inherits(action_expectation_comments, "list"),
-    identical(dim(site_data), dim(site_comments)),
-    identical(dim(feasibility_data), dim(feasibility_comments)),
-    identical(dim(feature_data), dim(feature_comments)),
-    identical(dim(action_expectation_data), dim(action_expectation_comments)),
-    identical(dim(site_data), dim(site_comments)),
     ## results data
     inherits(summary_results_data, "data.frame"),
     inherits(site_results_data, "data.frame"),
-    inherits(feature_results_data, "data.frame"),
-    ## results comments
-    inherits(summary_results_comments, "data.frame"),
-    inherits(site_results_comments, "data.frame"),
-    inherits(feature_results_comments, "data.frame"),
-    identical(dim(summary_results_data), dim(summary_results_comments)),
-    identical(dim(site_results_data), dim(site_results_comments)),
-    identical(dim(feature_results_data), dim(feature_results_comments))
+    inherits(feature_results_data, "data.frame")
   )
+  if (!is.null(summary_results_comments)) {
+    assertthat::assert_that(
+      inherits(summary_results_comments, "data.frame"),
+      identical(dim(summary_results_data), dim(summary_results_comments))
+    )
+  }
+  if (!is.null(site_results_comments)) {
+    assertthat::assert_that(
+      inherits(site_results_comments, "data.frame"),
+      identical(dim(site_results_data), dim(site_results_comments))
+    )
+  }
+  if (!is.null(feature_results_comments)) {
+    assertthat::assert_that(
+      inherits(feature_results_comments, "data.frame"),
+      identical(dim(feature_results_data), dim(feature_results_comments))
+    )
+  }
 
   # create spreadsheet
   x <- openxlsx::createWorkbook()
@@ -135,7 +128,11 @@ create_solution_workbook <- function(
   x <- add_site_data_sheet(
     x = x,
     data = site_data,
-    comments = site_comments,
+    comments = template_site_comments(
+      site_descriptions = site_descriptions,
+      action_descriptions = action_descriptions,
+      parameters = parameters
+    ),
     parameters = parameters,
     n_actions = length(action_ids)
   )
@@ -144,7 +141,11 @@ create_solution_workbook <- function(
   x <- add_feasibility_data_sheet(
     x = x,
     data = feasibility_data,
-    comments = feasibility_comments,
+    comments = template_feasibility_comments(
+      site_descriptions = site_descriptions,
+      action_descriptions = action_descriptions,
+      parameters = parameters
+    ),
     parameters = parameters
   )
 
@@ -152,7 +153,10 @@ create_solution_workbook <- function(
   x <- add_feature_data_sheet(
     x = x,
     data = feature_data,
-    comments = feature_comments,
+    comments = template_feature_comments(
+      feature_descriptions = feature_descriptions,
+      parameters = parameters
+    ),
     parameters = parameters
   )
 
@@ -161,7 +165,12 @@ create_solution_workbook <- function(
     x <- add_action_expectation_sheet(
       x = x,
       data = action_expectation_data[[i]],
-      comments = action_expectation_comments[[i]],
+      comments = template_action_expectation_comments(
+        action_id = action_ids[[i]],
+        site_descriptions = site_descriptions,
+        feature_descriptions = feature_descriptions,
+        parameters = parameters
+      ),
       action_id = action_ids[i],
       parameters = parameters
     )

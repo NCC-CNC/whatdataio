@@ -19,11 +19,6 @@ test_that("expected result", {
     feasibility_data = d$feasibility_data,
     feature_data = d$feature_data,
     action_expectation_data = d$action_expectation_data,
-    ## data comments
-    site_comments = d$site_comments,
-    feasibility_comments = d$feasibility_comments,
-    feature_comments = d$feature_comments,
-    action_expectation_comments = d$action_expectation_comments,
     ## results
     summary_results_data = tibble::tibble(
       Status = "No information to show.",

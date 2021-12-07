@@ -15,10 +15,6 @@ create_project_workbook(
   feasibility_data,
   feature_data,
   action_expectation_data,
-  site_comments,
-  feasibility_comments,
-  feature_comments,
-  action_expectation_comments,
   parameters
 )
 }
@@ -56,16 +52,6 @@ one value.}
 
 \item{action_expectation_data}{\code{list} of \code{data.frame} objects
 containing expectation data.}
-
-\item{site_comments}{\code{data.frame} containing site comments.}
-
-\item{feasibility_comments}{\code{data.frame}containing feasibility
-comments.}
-
-\item{feature_comments}{\code{data.frame} containing feature comments.}
-
-\item{action_expectation_comments}{\code{list} of \code{data.frame} objects
-containing expectation comments.}
 
 \item{parameters}{\code{list} object containing parameters to customize
 appearance of worksheet.}

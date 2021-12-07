@@ -31,13 +31,4 @@ test_that("expected_result", {
   expect_equal(nrow(d$feature_data), 3)
   expect_is(d$action_expectation_data, "list")
   expect_length(d$action_expectation_data, 4)
-  ## comments
-  expect_is(d$site_comments, "data.frame")
-  expect_equal(nrow(d$site_comments), 5)
-  expect_is(d$feasibility_comments, "data.frame")
-  expect_equal(nrow(d$feasibility_comments), 5)
-  expect_is(d$feature_comments, "data.frame")
-  expect_equal(nrow(d$feature_comments), 3)
-  expect_is(d$action_expectation_comments, "list")
-  expect_length(d$action_expectation_comments, 4)
 })

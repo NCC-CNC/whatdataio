@@ -15,16 +15,12 @@ create_solution_workbook(
   feasibility_data,
   feature_data,
   action_expectation_data,
-  site_comments,
-  feasibility_comments,
-  feature_comments,
-  action_expectation_comments,
   summary_results_data,
   site_results_data,
   feature_results_data,
-  summary_results_comments,
-  site_results_comments,
-  feature_results_comments,
+  summary_results_comments = NULL,
+  site_results_comments = NULL,
+  feature_results_comments = NULL,
   parameters
 )
 }
@@ -63,16 +59,6 @@ one value.}
 \item{action_expectation_data}{\code{list} of \code{data.frame} objects
 containing expectation data.}
 
-\item{site_comments}{\code{data.frame} containing site comments.}
-
-\item{feasibility_comments}{\code{data.frame}containing feasibility
-comments.}
-
-\item{feature_comments}{\code{data.frame} containing feature comments.}
-
-\item{action_expectation_comments}{\code{list} of \code{data.frame} objects
-containing expectation comments.}
-
 \item{summary_results_data}{\code{data.frame} containing summary results data.}
 
 \item{site_results_data}{\code{data.frame} containing site results data.}
@@ -80,12 +66,15 @@ containing expectation comments.}
 \item{feature_results_data}{\code{data.frame} containing feature results data.}
 
 \item{summary_results_comments}{\code{data.frame} containing summary results
-comments.}
+comments.
+Defaults to \code{NULL} such that no comments are added.}
 
-\item{site_results_comments}{\code{data.frame} containing site results comments.}
+\item{site_results_comments}{\code{data.frame} containing site results comments.
+Defaults to \code{NULL} such that no comments are added.}
 
 \item{feature_results_comments}{\code{data.frame} containing feature results
-comments.}
+comments.
+Defaults to \code{NULL} such that no comments are added.}
 
 \item{parameters}{\code{list} object containing parameters to customize
 appearance of worksheet.}

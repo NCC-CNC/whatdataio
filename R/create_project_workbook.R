@@ -18,9 +18,6 @@ create_project_workbook <- function(
   ## data
   site_data, feasibility_data,
   feature_data, action_expectation_data,
-  ## data comments
-  site_comments, feasibility_comments,
-  feature_comments, action_expectation_comments,
   ## parameter
   parameters) {
   # validate arguments
@@ -40,17 +37,7 @@ create_project_workbook <- function(
     inherits(site_data, "data.frame"),
     inherits(feasibility_data, "data.frame"),
     inherits(feature_data, "data.frame"),
-    inherits(action_expectation_data, "list"),
-    ## input comments
-    inherits(site_comments, "data.frame"),
-    inherits(feasibility_comments, "data.frame"),
-    inherits(feature_comments, "data.frame"),
-    inherits(action_expectation_comments, "list"),
-    identical(dim(site_data), dim(site_comments)),
-    identical(dim(feasibility_data), dim(feasibility_comments)),
-    identical(dim(feature_data), dim(feature_comments)),
-    identical(dim(action_expectation_data), dim(action_expectation_comments)),
-    identical(dim(site_data), dim(site_comments))
+    inherits(action_expectation_data, "list")
   )
 
   # create spreadsheet
@@ -61,7 +48,11 @@ create_project_workbook <- function(
   x <- add_site_data_sheet(
     x = x,
     data = site_data,
-    comments = site_comments,
+    comments = template_site_comments(
+      site_descriptions = site_descriptions,
+      action_descriptions = action_descriptions,
+      parameters = parameters
+    ),
     parameters = parameters,
     n_actions = length(action_ids)
   )
@@ -70,7 +61,11 @@ create_project_workbook <- function(
   x <- add_feasibility_data_sheet(
     x = x,
     data = feasibility_data,
-    comments = feasibility_comments,
+    comments = template_feasibility_comments(
+      site_descriptions = site_descriptions,
+      action_descriptions = action_descriptions,
+      parameters = parameters
+    ),
     parameters = parameters
   )
 
@@ -78,7 +73,10 @@ create_project_workbook <- function(
   x <- add_feature_data_sheet(
     x = x,
     data = feature_data,
-    comments = feature_comments,
+    comments = template_feature_comments(
+      feature_descriptions = feature_descriptions,
+      parameters = parameters
+    ),
     parameters = parameters
   )
 
@@ -87,7 +85,12 @@ create_project_workbook <- function(
     x <- add_action_expectation_sheet(
       x = x,
       data = action_expectation_data[[i]],
-      comments = action_expectation_comments[[i]],
+      comments = template_action_expectation_comments(
+        action_id = action_ids[[i]],
+        site_descriptions = site_descriptions,
+        feature_descriptions = feature_descriptions,
+        parameters = parameters
+      ),
       action_id = action_ids[i],
       parameters = parameters
     )

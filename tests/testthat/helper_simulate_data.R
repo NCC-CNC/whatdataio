@@ -130,10 +130,6 @@ simulate_data <- function(
     site_data = site_data,
     feasibility_data = feasibility_data,
     feature_data = feature_data,
-    action_expectation_data = action_expectation_data,
-    site_comments = site_comments,
-    feasibility_comments = feasibility_comments,
-    feature_comments = feature_comments,
-    action_expectation_comments = action_expectation_comments
+    action_expectation_data = action_expectation_data
   )
 }
