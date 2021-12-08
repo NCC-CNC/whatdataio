@@ -4,7 +4,8 @@ test_that("expected_result", {
   # data
   parameters <- read_data_configuration()
   d <- simulate_project_data(
-    n_sites = 5, n_features = 3, n_actions = 4,  parameters = parameters)
+    n_sites = 5, n_features = 3, n_actions = 4,  parameters = parameters
+  )
   # tests
   ## object
   expect_is(d, "list")

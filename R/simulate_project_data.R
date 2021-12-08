@@ -63,7 +63,7 @@ simulate_project_data <- function(
   feasibility_data[zero_idx] <- 0
   feasibility_data <- tibble::as_tibble(as.data.frame(feasibility_data))
   names(feasibility_data) <-  as.character(glue::glue(
-    parameters$feasibility_sheet$action_status_header,
+    parameters$feasibility_data_sheet$action_feasibility_header,
     action_ids = action_ids))
   feasibility_data <- dplyr::bind_cols(
     tibble::tibble(name = site_ids),
