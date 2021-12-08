@@ -4,7 +4,7 @@ test_that("expected result", {
   # initialization
   f <- tempfile(fileext = ".xlsx")
   parameters <- read_data_configuration()
-  d <- simulate_data(5, 4, 3, parameters)
+  d <- simulate_project_data(5, 4, 3, parameters)
   # main code
   w <- create_project_workbook(
     ## variables

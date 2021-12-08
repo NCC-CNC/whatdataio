@@ -58,6 +58,7 @@ Collate:
     'package.R'
     'read_data_configuration.R'
     'read_spreadsheet_data.R'
+    'simulate_project_data.R'
     'template_comments.R'
     'template_data.R'
     'verification.R'

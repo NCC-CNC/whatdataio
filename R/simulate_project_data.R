@@ -1,4 +1,4 @@
-#' Simulate data
+#' Simulate project data
 #'
 #' @param n_sites `integer` number of sites.
 #'
@@ -12,7 +12,9 @@
 #'   to 0.05 (5%).
 #'
 #' @return `list` object containing the simulated data.
-simulate_data <- function(
+#'
+#' @export
+simulate_project_data <- function(
   n_sites, n_features, n_actions, parameters, prop_locked_out = 0.05) {
   # assert arguments are valid
   assertthat::assert_that(
@@ -36,8 +38,8 @@ simulate_data <- function(
   ## data
   site_data <- tibble::tibble(
     name = site_ids,
-    x = runif(n_sites),
-    y = runif(n_sites),
+    x = stats::runif(n_sites),
+    y = stats::runif(n_sites),
     status = sample(action_ids, n_sites, replace = TRUE)
   )
   names(site_data) <- c(
@@ -47,17 +49,11 @@ simulate_data <- function(
     parameters$site_data_sheet$status_header
   )
   cost_data <- matrix(
-    runif(n_sites * n_actions) * 5, nrow = n_sites, ncol = n_actions)
+    stats::runif(n_sites * n_actions) * 5, nrow = n_sites, ncol = n_actions)
   cost_data <- tibble::as_tibble(as.data.frame(cost_data))
   names(cost_data) <-  as.character(glue::glue(
     parameters$site_data_sheet$action_cost_header, action_ids = action_ids))
   site_data <- dplyr::bind_cols(site_data, cost_data)
-  ## comments
-  site_comments <- template_site_comments(
-    site_descriptions = site_descriptions,
-    action_descriptions = action_descriptions,
-    parameters = parameters
-  )
 
   # simulate site feasibility
   ## data
@@ -73,28 +69,17 @@ simulate_data <- function(
     tibble::tibble(name = site_ids),
     feasibility_data
   )
-  ## comments
-  feasibility_comments <- template_feasibility_comments(
-    site_descriptions = site_descriptions,
-    action_descriptions = action_descriptions,
-    parameters = parameters
-  )
 
   # simulate features
   ## data
   feature_data <- tibble::tibble(
     name = feature_ids,
-    target = runif(n_features, 0.4, 0.6) * n_sites,
-    weight = runif(n_features, 0.5, 1.0))
+    target = stats::runif(n_features, 0.4, 0.6) * n_sites,
+    weight = stats::runif(n_features, 0.5, 1.0))
   names(feature_data) <- c(
     parameters$feature_data_sheet$name_header,
     parameters$feature_data_sheet$target_header,
     parameters$feature_data_sheet$weight_header)
-  ## comments
-  feature_comments <- template_feature_comments(
-    feature_descriptions = feature_descriptions,
-    parameters = parameters
-  )
 
   # simulate action expectation
   ## data
@@ -103,20 +88,14 @@ simulate_data <- function(
     feature_ids = feature_ids))
   action_expectation_data <- lapply(seq_along(action_ids), function(i) {
     s <- tibble::tibble(name = site_ids)
-    v <- matrix(runif(n_sites * n_features), nrow = n_sites, ncol = n_features)
+    v <- matrix(
+      stats::runif(n_sites * n_features),
+      nrow = n_sites, ncol = n_features
+    )
     v <- tibble::as_tibble(as.data.frame(v))
     names(v) <- cn
     names(s) <- parameters$site_data_sheet$name_header
     dplyr::bind_cols(s, v)
-  })
-  ## comments
-  action_expectation_comments <-  lapply(action_ids, function(x) {
-    template_action_expectation_comments(
-      site_descriptions = site_descriptions,
-      feature_descriptions = feature_descriptions,
-      action_id = x,
-      parameters = parameters
-    )
   })
 
   # return result
