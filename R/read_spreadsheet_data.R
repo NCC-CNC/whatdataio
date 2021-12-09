@@ -28,7 +28,7 @@ read_spreadsheet_data <- function(x, parameters) {
   site_data_sheet_name <- parameters$site_data_sheet$sheet_name
   feasibility_data_sheet_name <- parameters$feasibility_data_sheet$sheet_name
   feature_data_sheet_name <- parameters$feature_data_sheet$sheet_name
-  metadata_sheet_name <-parameters$metadata_sheet$sheet_name
+  metadata_sheet_name <- parameters$metadata_sheet$sheet_name
   action_expectation_sheet_names <- setdiff(
     names(w),
     c(site_data_sheet_name,
@@ -127,7 +127,12 @@ read_spreadsheet_data <- function(x, parameters) {
   ## site data
   site_data[[1]] <- as.character(site_data[[1]])
   for (i in seq(2, ncol(site_data))) {
-    site_data[[i]] <- as.numeric(site_data[[i]])
+    if (!identical(
+      names(site_data)[[i]],
+      parameters$site_data_sheet$status_header)
+    ) {
+      site_data[[i]] <- as.numeric(site_data[[i]])
+    }
   }
 
   ## site feasibility data
