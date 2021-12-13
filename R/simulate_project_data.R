@@ -74,7 +74,7 @@ simulate_project_data <- function(
   ## data
   feature_data <- tibble::tibble(
     name = feature_ids,
-    goal = stats::runif(n_features, 0.4, 0.6) * n_sites,
+    goal = stats::runif(n_features, 0.01, 0.2) * 100,
     weight = stats::runif(n_features, 0.5, 1.0))
   names(feature_data) <- c(
     parameters$feature_data_sheet$name_header,
