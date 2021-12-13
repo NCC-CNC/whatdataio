@@ -90,8 +90,8 @@ template_feature_data <- function(feature_ids, parameters) {
   # extract parameters
   p <- parameters$feature_data_sheet
   # create data
-  d <- tibble::tibble(feature_id = feature_ids, target = "", weight = "")
-  names(d) <- c(p$name_header, p$target_header, p$weight_header)
+  d <- tibble::tibble(feature_id = feature_ids, goal = "", weight = "")
+  names(d) <- c(p$name_header, p$goal_header, p$weight_header)
   # return data
   d
 }

@@ -87,10 +87,10 @@ template_feature_comments <- function(feature_descriptions, parameters) {
   # create data
   d <- tibble::tibble(
     feature_id = feature_descriptions,
-    target = NA_character_,
+    goal = NA_character_,
     weight = NA_character_
   )
-  names(d) <- c(p$name_header, p$target_header, p$weight_header)
+  names(d) <- c(p$name_header, p$goal_header, p$weight_header)
   # return data
   d
 }

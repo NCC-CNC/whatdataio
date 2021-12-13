@@ -10,7 +10,7 @@ NULL
 #'
 #' @details
 #' The feature data worksheet is used to specify information the
-#' representation targets and weights for each feature.
+#' representation goals and weights for each feature.
 #'
 #' @inherit add_site_data_sheet return
 #'
@@ -113,11 +113,11 @@ add_feature_data_sheet <- function(x, data, comments, parameters) {
   openxlsx::writeDataTable(x, p$sheet_name, x = data, startRow = 3)
 
   # add input data validation
-  ## targets
+  ## goals
   openxlsx::dataValidation(x, p$sheet_name,
     rows = seq_len(nrow(data)) + start_row, cols = 2,
     type = "decimal", operator = "between",
-    value = c(0, 1e+6), allowBlank = FALSE,
+    value = c(0, 100), allowBlank = FALSE,
     showInputMsg = TRUE, showErrorMsg = TRUE)
 
   ## weights

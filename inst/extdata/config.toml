@@ -27,13 +27,13 @@ sub_message = "Specifically, we ask that you input data indicating which managem
 [feature_data_sheet]
 sheet_name = "Feature data"
 name_header = "Feature ID"
-target_header = "Target threshold amount"
+goal_header = "Goal (%)"
 weight_header = "Relative importance (weight)"
 col_width_padding = 10
 sub_message_height = 250
 main_message_height = 20
 main_message = "Please enter information for your features into this worksheet."
-sub_message = "Specifically, we ask that you input values to specify trade-offs for managing different biodiversity elements (e.g. species, habitat types) within your conservation planning exercise. To help prioritize implementation of specific management actions in specific sites, we require an estimate of the minimum amount of each feature you think is important to achieve across all of the sites (termed “target threshold amount”). For example, you could calculate these target threshold amounts as a percentage of the current amount of each feature (e.g. maybe you want to increase the amount of each feature by 50%)? Alternatively, these values could be guided using population viability analyses, statistical models, or expert elicitation. Please take care to ensure that each target value is in the same units as the expectation data. For example, the value in the cell B2 for this spreadsheet should be in the same unit as the values in the B column for all action expectation worksheets (i.e. worksheets starting with the word “Expectation”). To ensure that the prioritization process explicitly accounts for your objectives (i.e. what YOU think is important), you can also specify the relative importance (weight) of each feature. The default value is 1 such that all features are considered equally important. These values should be between 0 and 100. Greater values indicate greater importance. A weight of exactly 0 means that a feature is not important at all and does not “count” when comparing different conservation plans. Please note that these values can be changed later in the NCC Priority Actions App. After filling out this worksheet, every light gray cell should have a numerical value."
+sub_message = "Specifically, we ask that you input values to specify trade-offs for managing different biodiversity elements (e.g. species, habitat types) within your conservation planning exercise. To help prioritize implementation of specific management actions in specific sites, we require percentage-based threshold values to specify the minimum amount of each feature you think is important to achieve across all of the sites (termed “goal”). Specifically, the goal values are expressed as a percentage of the maximum possible amount of each feature, assuming that the best possible action for each feature was implemented within each site (per the expecation data). To ensure that the prioritization process explicitly accounts for your objectives (i.e. what YOU think is important), you can also specify the relative importance (weight) of each feature. The default value is 1 such that all features are considered equally important. Greater values indicate greater importance. A weight of exactly 0 means that a feature is not important at all and does not “count” when comparing different conservation plans. Both goal and weight values should be between 0 and 100. Please note that these values can be changed later in the What To Do application. After filling out this worksheet, every light gray cell should have a numerical value."
 
 [action_expectation_sheet]
 sheet_name = "Expectation of “{action_ids}”"
@@ -81,19 +81,6 @@ sub_message_height = 30
 main_message_height = 20
 main_message = "Feature results from prioritization."
 sub_message = "This worksheet contains summary information on the prioritization. Each row contains a different statistic to summarize the prioritization."
-
-[error_sheets]
-name_header = "Error"
-iis_header = "Error"
-main_message = "There is no possible solution because (i) at least one of the targets cannot be met, (ii) an action needed to meet a target has been locked out, or (iii) all of the actions for a given site have been locked out."
-sub_message = "No valid solution, see Summary tab."
-status_prefix = "Status for the site “{site_ids}” and action “{action_ids}”"
-target_prefix = "Target for feature “{feature_ids}”"
-budget_prefix = "Budget"
-lower_bound_message = "is set to zero"
-upper_bound_message = "is set to zero"
-budget_message = "is too low given the cheapest possible action costs"
-target_message = "is too high"
 
 [main_style]
 # see for options https://www.rdocumentation.org/packages/openxlsx/versions/4.2.3/topics/createStyle

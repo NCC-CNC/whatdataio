@@ -74,11 +74,11 @@ simulate_project_data <- function(
   ## data
   feature_data <- tibble::tibble(
     name = feature_ids,
-    target = stats::runif(n_features, 0.4, 0.6) * n_sites,
+    goal = stats::runif(n_features, 0.4, 0.6) * n_sites,
     weight = stats::runif(n_features, 0.5, 1.0))
   names(feature_data) <- c(
     parameters$feature_data_sheet$name_header,
-    parameters$feature_data_sheet$target_header,
+    parameters$feature_data_sheet$goal_header,
     parameters$feature_data_sheet$weight_header)
 
   # simulate action expectation
