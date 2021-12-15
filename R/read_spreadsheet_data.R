@@ -138,7 +138,7 @@ read_spreadsheet_data <- function(x, parameters) {
   ## site feasibility data
   feasibility_data[[1]] <- as.character(feasibility_data[[1]])
   for (i in seq(2, ncol(feasibility_data))) {
-    feasibility_data[[i]] <- as.numeric(feasibility_data[[i]])
+    feasibility_data[[i]] <- as.logical(feasibility_data[[i]])
   }
 
   ## feature data
