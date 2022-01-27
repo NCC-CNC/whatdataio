@@ -14,7 +14,7 @@ create_project_workbook(
   site_data,
   feasibility_data,
   feature_data,
-  action_expectation_data,
+  consequence_data,
   parameters
 )
 }
@@ -50,7 +50,7 @@ one value.}
 
 \item{feature_data}{\code{data.frame} containing feature data.}
 
-\item{action_expectation_data}{\code{list} of \code{data.frame} objects
+\item{consequence_data}{\code{list} of \code{data.frame} objects
 containing expectation data.}
 
 \item{parameters}{\code{list} object containing parameters to customize

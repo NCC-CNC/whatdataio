@@ -95,9 +95,9 @@ template_feature_comments <- function(feature_descriptions, parameters) {
   d
 }
 
-#' Template action expectation data
+#' Template consequence data
 #'
-#' Create action expectation comments for the template workbook.
+#' Create consequence comments for the template workbook.
 #'
 #' @param action_id `character` id of the action.
 #'
@@ -106,7 +106,7 @@ template_feature_comments <- function(feature_descriptions, parameters) {
 #' @return `data.frame` object.
 #'
 #' @noRd
-template_action_expectation_comments <- function(
+template_consequence_comments <- function(
   site_descriptions, feature_descriptions, action_id, parameters) {
   # assert arguments are valid
   assertthat::assert_that(
@@ -115,7 +115,7 @@ template_action_expectation_comments <- function(
     assertthat::is.string(action_id), assertthat::noNA(action_id),
     is.list(parameters))
   # extract parameters
-  p <- parameters$action_expectation_sheet
+  p <- parameters$consequence_sheet
   # create data
   d <- tibble::tibble(site_id = site_descriptions)
   names(d) <- c(p$name_header)

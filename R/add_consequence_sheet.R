@@ -1,15 +1,15 @@
 #' @include internal.R
 NULL
 
-#' Add action expectation worksheet
+#' Add consequence worksheet
 #'
-#' This function adds an action expectation data worksheet to an Excel Workbook.
+#' This function adds a consequence data worksheet to an Excel Workbook.
 #'
 #' @inheritParams create_template_workbook
 #' @inheritParams add_site_data_sheet
 #'
 #' @details
-#' An action expectation worksheet specifies the expected amount of each
+#' A consequence worksheet specifies the expected amount of each
 #' feature that would be expected to follow if a certain management action
 #' were implemented within each site. Note that is it assumed that the
 #' amount of each feature expected to occur within each site is independent.
@@ -20,7 +20,7 @@ NULL
 #' @inherit add_site_data_sheet return
 #'
 #' @noRd
-add_action_expectation_sheet <- function(x, data, comments, action_id,
+add_consequence_sheet <- function(x, data, comments, action_id,
                                          parameters) {
   # validate arguments
   assertthat::assert_that(
@@ -33,7 +33,7 @@ add_action_expectation_sheet <- function(x, data, comments, action_id,
     is.list(parameters))
 
   # define parameters
-  p <- parameters$action_expectation_sheet
+  p <- parameters$consequence_sheet
   start_row <- 3
   n_message_rows <- 5
 

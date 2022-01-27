@@ -40,13 +40,13 @@ test_that("template_feature_data", {
   expect_equal(d[[1]], fn)
 })
 
-test_that("template_action_expectation_data", {
+test_that("template_consequence_data", {
   # data
   p <- read_data_configuration()
   sn <- paste0("s", seq_len(5))
   fn <- paste0("f", seq_len(3))
   an <- paste0("a", seq_len(2))
-  d <- template_action_expectation_data(sn, fn, an[1], p)
+  d <- template_consequence_data(sn, fn, an[1], p)
   # tests
   expect_is(d, "data.frame")
   expect_equal(d[[1]], sn)

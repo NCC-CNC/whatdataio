@@ -17,10 +17,10 @@ test_that("expected result", {
   expect_is(x$site_data, "tbl_df")
   expect_is(x$feasibility_data, "tbl_df")
   expect_is(x$feature_data, "tbl_df")
-  expect_is(x$action_expectation_data, "list")
-  expect_equal(length(x$action_expectation_data), 5)
-  expect_equal(names(x$action_expectation_data),
-               paste0("action_", seq_along(x$action_expectation_data)))
-  expect_true(all(vapply(x$action_expectation_data,
+  expect_is(x$consequence_data, "list")
+  expect_equal(length(x$consequence_data), 5)
+  expect_equal(names(x$consequence_data),
+               paste0("action_", seq_along(x$consequence_data)))
+  expect_true(all(vapply(x$consequence_data,
                          inherits, logical(1), "tbl_df")))
 })

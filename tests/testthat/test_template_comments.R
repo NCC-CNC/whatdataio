@@ -42,13 +42,13 @@ test_that("template_feature_comments", {
   expect_equal(d[[3]], rep(NA_character_, 3))
 })
 
-test_that("template_action_expectation_comments", {
+test_that("template_consequence_comments", {
   # data
   p <- read_data_configuration()
   sn <- paste0("s", seq_len(5))
   fn <- paste0("f", seq_len(3))
   an <- paste0("a", seq_len(2))
-  d <- template_action_expectation_comments(sn, fn, an[1], p)
+  d <- template_consequence_comments(sn, fn, an[1], p)
   # tests
   expect_is(d, "data.frame")
   expect_true(all(fn %in% names(d)))

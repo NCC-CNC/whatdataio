@@ -96,9 +96,9 @@ template_feature_data <- function(feature_ids, parameters) {
   d
 }
 
-#' Template action expectation data
+#' Template consequence data
 #'
-#' Create action expectation data for the template workbook.
+#' Create consequence data for the template workbook.
 #'
 #' @param action_id `character` id of the action.
 #'
@@ -107,7 +107,7 @@ template_feature_data <- function(feature_ids, parameters) {
 #' @return `data.frame` object.
 #'
 #' @noRd
-template_action_expectation_data <- function(
+template_consequence_data <- function(
   site_ids, feature_ids, action_id, parameters) {
   # assert arguments are valid
   assertthat::assert_that(
@@ -116,14 +116,14 @@ template_action_expectation_data <- function(
     assertthat::is.string(action_id), assertthat::noNA(action_id),
     is.list(parameters))
   # extract parameters
-  p <- parameters$action_expectation_sheet
+  p <- parameters$consequence_sheet
   # create data
   d <- tibble::tibble(site_id = site_ids)
   names(d) <- c(p$name_header)
   d2 <- tibble::as_tibble(as.data.frame(matrix(
     NA_real_, ncol = length(feature_ids))))
   names(d2) <- as.character(glue::glue(
-      p$action_expectation_header, feature_ids = feature_ids))
+      p$consequence_header, feature_ids = feature_ids))
   d <- dplyr::bind_cols(d, d2)
   # return data
   d

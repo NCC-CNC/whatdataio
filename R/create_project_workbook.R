@@ -17,7 +17,7 @@ create_project_workbook <- function(
   action_ids, action_descriptions,
   ## data
   site_data, feasibility_data,
-  feature_data, action_expectation_data,
+  feature_data, consequence_data,
   ## parameter
   parameters) {
   # validate arguments
@@ -37,7 +37,7 @@ create_project_workbook <- function(
     inherits(site_data, "data.frame"),
     inherits(feasibility_data, "data.frame"),
     inherits(feature_data, "data.frame"),
-    inherits(action_expectation_data, "list")
+    inherits(consequence_data, "list")
   )
 
   # create spreadsheet
@@ -82,10 +82,10 @@ create_project_workbook <- function(
 
   ## feature expectation data sheet for each action
   for (i in seq_along(action_ids)) {
-    x <- add_action_expectation_sheet(
+    x <- add_consequence_sheet(
       x = x,
-      data = action_expectation_data[[i]],
-      comments = template_action_expectation_comments(
+      data = consequence_data[[i]],
+      comments = template_consequence_comments(
         action_id = action_ids[[i]],
         site_descriptions = site_descriptions,
         feature_descriptions = feature_descriptions,

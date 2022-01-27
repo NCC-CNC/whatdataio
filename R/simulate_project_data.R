@@ -81,12 +81,12 @@ simulate_project_data <- function(
     parameters$feature_data_sheet$goal_header,
     parameters$feature_data_sheet$weight_header)
 
-  # simulate action expectation
+  # simulate consequence
   ## data
   cn <- as.character(glue::glue(
-    parameters$action_expectation_sheet$action_expectation_header,
+    parameters$consequence_sheet$consequence_header,
     feature_ids = feature_ids))
-  action_expectation_data <- lapply(seq_along(action_ids), function(i) {
+  consequence_data <- lapply(seq_along(action_ids), function(i) {
     s <- tibble::tibble(name = site_ids)
     v <- matrix(
       stats::runif(n_sites * n_features),
@@ -109,6 +109,6 @@ simulate_project_data <- function(
     site_data = site_data,
     feasibility_data = feasibility_data,
     feature_data = feature_data,
-    action_expectation_data = action_expectation_data
+    consequence_data = consequence_data
   )
 }

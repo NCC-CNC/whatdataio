@@ -18,7 +18,7 @@ test_that("expected result", {
     site_data = d$site_data,
     feasibility_data = d$feasibility_data,
     feature_data = d$feature_data,
-    action_expectation_data = d$action_expectation_data,
+    consequence_data = d$consequence_data,
     ## results
     summary_results_data = tibble::tibble(
       Status = "No information to show.",

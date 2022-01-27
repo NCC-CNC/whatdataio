@@ -42,7 +42,7 @@ VignetteBuilder: knitr
 RoxygenNote: 7.1.2
 Collate:
     'internal.R'
-    'add_action_expectation_sheet.R'
+    'add_consequence_sheet.R'
     'add_feasibility_data_sheet.R'
     'add_feature_data_sheet.R'
     'add_feature_results_sheet.R'

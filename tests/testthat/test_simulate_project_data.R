@@ -30,6 +30,6 @@ test_that("expected_result", {
   expect_equal(nrow(d$feasibility_data), 5)
   expect_is(d$feature_data, "data.frame")
   expect_equal(nrow(d$feature_data), 3)
-  expect_is(d$action_expectation_data, "list")
-  expect_length(d$action_expectation_data, 4)
+  expect_is(d$consequence_data, "list")
+  expect_length(d$consequence_data, 4)
 })

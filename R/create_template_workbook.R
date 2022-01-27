@@ -60,8 +60,8 @@ create_template_workbook <- function(site_ids, site_descriptions,
     feature_ids = feature_ids,
     parameters = parameters
   )
-  action_expectation_data <- lapply(
-    action_ids, template_action_expectation_data,
+  consequence_data <- lapply(
+    action_ids, template_consequence_data,
     site_ids = site_ids, feature_ids = feature_ids,
     parameters = parameters
   )
@@ -80,8 +80,8 @@ create_template_workbook <- function(site_ids, site_descriptions,
     feature_descriptions = feature_descriptions,
     parameters = parameters
   )
-  action_expectation_comments <- lapply(
-    action_descriptions, template_action_expectation_comments,
+  consequence_comments <- lapply(
+    action_descriptions, template_consequence_comments,
     site_descriptions = site_descriptions,
     feature_descriptions = feature_descriptions,
     parameters = parameters
@@ -115,10 +115,10 @@ create_template_workbook <- function(site_ids, site_descriptions,
 
   ## feature expectation data sheet for each action
   for (i in seq_along(action_ids)) {
-    x <- add_action_expectation_sheet(
+    x <- add_consequence_sheet(
       x = x,
-      data = action_expectation_data[[i]],
-      comments = action_expectation_comments[[i]],
+      data = consequence_data[[i]],
+      comments = consequence_comments[[i]],
       action_id = action_ids[i],
       parameters = parameters
     )

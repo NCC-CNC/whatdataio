@@ -14,7 +14,7 @@ create_solution_workbook(
   site_data,
   feasibility_data,
   feature_data,
-  action_expectation_data,
+  consequence_data,
   summary_results_data,
   site_results_data,
   feature_results_data,
@@ -56,7 +56,7 @@ one value.}
 
 \item{feature_data}{\code{data.frame} containing feature data.}
 
-\item{action_expectation_data}{\code{list} of \code{data.frame} objects
+\item{consequence_data}{\code{list} of \code{data.frame} objects
 containing expectation data.}
 
 \item{summary_results_data}{\code{data.frame} containing summary results data.}
