@@ -2,6 +2,7 @@ all: docs test check
 
 data: inst/scripts/test-data.R
 	R CMD BATCH --no-restore --no-save inst/scripts/test-data.R
+	R CMD BATCH --no-restore --no-save inst/scripts/test-data2.R
 
 docs: man readme
 

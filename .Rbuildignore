@@ -26,3 +26,4 @@ pkgdown
 .covrignore
 ^\.github$
 test-data.Rout
+test-data2.Rout

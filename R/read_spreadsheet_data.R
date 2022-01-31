@@ -95,21 +95,23 @@ read_spreadsheet_data <- function(x, parameters) {
   feasibility_data_names <- unlist(
     openxlsx::read.xlsx(
       w, sheet = feasibility_data_sheet_name, colNames = FALSE,
-      cols = seq_len(ncol(site_data)), rows = 3
+      cols = seq_len(ncol(feasibility_data)), rows = 3
     ),
     recursive = TRUE, use.names = FALSE
   )
   feature_data_names <- unlist(
     openxlsx::read.xlsx(
       w, sheet = feature_data_sheet_name, colNames = FALSE,
-      cols = seq_len(ncol(site_data)), rows = 3
+      cols = seq_len(ncol(feature_data)), rows = 3
     ),
     recursive = TRUE, use.names = FALSE
   )
   consequence_data_names <- unlist(
     openxlsx::read.xlsx(
       w, sheet = consequence_sheet_names[[1]],
-      colNames = FALSE, cols = seq_len(ncol(site_data)), rows = 3
+      colNames = FALSE,
+      cols = seq_len(ncol(consequence_data[[1]])),
+      rows = 3
     ),
     recursive = TRUE, use.names = FALSE
   )

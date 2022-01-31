@@ -18,6 +18,7 @@ spell.log
 gp.log
 examples.log
 test-data.Rout
+test-data2.Rout
 
 # system files
 .directory
