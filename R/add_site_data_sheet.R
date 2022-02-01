@@ -9,6 +9,10 @@ NULL
 #'
 #' @param data `data.frame` object with template data.
 #'
+#' @param n_actions `integer` number of actions.
+#'
+#' @param comments `data.frame` object with template comments.
+#'
 #' @details
 #' The site data worksheet is used to specify information on the
 #' relative cost of implementing each management actions within
@@ -17,11 +21,14 @@ NULL
 #' @return An updated `Workbook` object.
 #'
 #' @noRd
-add_site_data_sheet <- function(x, data, parameters) {
+add_site_data_sheet <- function(x, data, comments, parameters, n_actions) {
   # validate arguments
   assertthat::assert_that(
     inherits(x, "Workbook"),
     inherits(data, "data.frame"),
+    inherits(comments, "data.frame"),
+    identical(ncol(data), ncol(comments)),
+    identical(nrow(data), nrow(comments)),
     is.list(parameters))
 
   # define parameters
@@ -123,21 +130,68 @@ add_site_data_sheet <- function(x, data, parameters) {
     rows = seq_len(nrow(data)) + start_row, cols = 2,
     type = "decimal", operator = "between",
     value = c(-180, 180), allowBlank = FALSE,
-    showInputMsg = TRUE, showErrorMsg = TRUE)
+    showInputMsg = TRUE, showErrorMsg = TRUE
+  )
 
   ## latitude column
   openxlsx::dataValidation(x, p$sheet_name,
     rows = seq_len(nrow(data)) + start_row, cols = 3,
     type = "decimal", operator = "between",
     value = c(-90, 90), allowBlank = FALSE,
-    showInputMsg = TRUE, showErrorMsg = TRUE)
+    showInputMsg = TRUE, showErrorMsg = TRUE
+  )
+
+  ## status column
+  suppressWarnings(
+    openxlsx::dataValidation(x, p$sheet_name,
+      rows = seq_len(nrow(data)) + start_row, cols = 4,
+      type = "list", operator = "between",
+      value = paste0("'meta'!$B$2:$B$", n_actions + 1),
+      allowBlank = TRUE, showInputMsg = TRUE, showErrorMsg = TRUE
+    )
+  )
 
   ## cost data columns
   openxlsx::dataValidation(x, p$sheet_name,
-    rows = seq_len(nrow(data)) + start_row, cols = seq(4, ncol(data)),
+    rows = seq_len(nrow(data)) + start_row, cols = seq(5, ncol(data)),
     type = "decimal", operator = "between",
     value = c(0, 1e+6), allowBlank = FALSE,
-    showInputMsg = TRUE, showErrorMsg = TRUE)
+    showInputMsg = TRUE, showErrorMsg = TRUE
+  )
+
+  # add comments
+  ## add comments for header
+  for (i in seq_len(ncol(comments))) {
+    if (!identical(names(data)[i], names(comments)[i])) {
+      openxlsx::writeComment(
+        x,
+        sheet = p$sheet_name,
+        col = i,
+        row = start_row,
+        comment = openxlsx::createComment(
+          comment = names(comments)[i],
+          author = "X"
+        )
+      )
+    }
+  }
+  ## add comments to cells
+  for (i in seq_len(ncol(comments))) {
+    for (j in seq_len(nrow(comments))) {
+      if (!is.na(comments[[i]][[j]])) {
+        openxlsx::writeComment(
+          x,
+          sheet = p$sheet_name,
+          col = i,
+          row = start_row + j,
+          comment = openxlsx::createComment(
+            comment = comments[[i]][[j]],
+            author = "X"
+          )
+        )
+      }
+    }
+  }
 
   # return result
   x

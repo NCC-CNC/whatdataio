@@ -1,10 +1,8 @@
-all: clean initc docs test check
+all: docs test check
 
-clean:
-	rm -rf man/*
-	rm -rf data/*
-	rm -rf docs/*
-	rm -rf inst/doc/*
+data: inst/scripts/test-data.R
+	R CMD BATCH --no-restore --no-save inst/scripts/test-data.R
+	R CMD BATCH --no-restore --no-save inst/scripts/test-data2.R
 
 docs: man readme
 
@@ -17,12 +15,6 @@ readme:
 test:
 	R --slave -e "devtools::test()" > test.log 2>&1
 	rm -f tests/testthat/Rplots.pdf
-
-vigns:
-	rm -f inst/doc/*.pdf
-	rm -f doc/*.pdf
-	R --slave -e "devtools::build_vignettes()"
-	cp -R doc inst/
 
 quicksite:
 	R --slave -e "pkgdown::build_site(run_dont_run = TRUE, lazy = TRUE)"
@@ -38,10 +30,6 @@ quickcheck:
 check:
 	echo "\n===== R CMD CHECK =====\n" > check.log 2>&1
 	R --slave -e "devtools::check(build_args = '--no-build-vignettes', args = '--no-build-vignettes', run_dont_test = TRUE, vignettes = FALSE)" >> check.log 2>&1
-
-wbcheck:
-	R --slave -e "devtools::check_win_devel()"
-	cp -R doc inst/
 
 build:
 	R --slave -e "devtools::build()"

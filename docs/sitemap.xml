@@ -13,31 +13,13 @@
     <loc>/news/index.html</loc>
   </url>
   <url>
-    <loc>/reference/create_export_workbook.html</loc>
+    <loc>/reference/create_project_workbook.html</loc>
+  </url>
+  <url>
+    <loc>/reference/create_solution_workbook.html</loc>
   </url>
   <url>
     <loc>/reference/create_template_workbook.html</loc>
-  </url>
-  <url>
-    <loc>/reference/format_error_data.html</loc>
-  </url>
-  <url>
-    <loc>/reference/format_locked_data.html</loc>
-  </url>
-  <url>
-    <loc>/reference/format_pu_data.html</loc>
-  </url>
-  <url>
-    <loc>/reference/format_results_data.html</loc>
-  </url>
-  <url>
-    <loc>/reference/format_target_data.html</loc>
-  </url>
-  <url>
-    <loc>/reference/format_weights_data.html</loc>
-  </url>
-  <url>
-    <loc>/reference/format_zone_data.html</loc>
   </url>
   <url>
     <loc>/reference/has_unique_values.html</loc>
@@ -59,6 +41,9 @@
   </url>
   <url>
     <loc>/reference/read_spreadsheet_data.html</loc>
+  </url>
+  <url>
+    <loc>/reference/simulate_project_data.html</loc>
   </url>
   <url>
     <loc>/reference/whatdataio.html</loc>

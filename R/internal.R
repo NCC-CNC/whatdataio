@@ -16,3 +16,22 @@ column_widths <- function(x) {
   })
   pmax(n, n2)
 }
+
+#' Extract strings
+#'
+#' Extract valid strings from a `character` vector.
+#'
+#' @param x `character` vector
+#'
+#' @details
+#' Valid strings are `character` values that are
+#' (i) not missing (`NA`) values and
+#' (ii) not empty (`""`) values.
+#'
+#' @return A `character` vector of valid strings from `x`.
+#'
+#' @noRd
+extract_strings <- function(x) {
+  assertthat::assert_that(is.character(x))
+  x[which(nchar(x) > 0 & !is.na(x))]
+}

@@ -1,49 +1,53 @@
 #' @include internal.R
 NULL
 
-#' Add site status worksheet
+#' Add consequence worksheet
 #'
-#' This function adds a site status worksheet to an Excel Workbook.
+#' This function adds a consequence data worksheet to an Excel Workbook.
 #'
 #' @inheritParams create_template_workbook
 #' @inheritParams add_site_data_sheet
 #'
 #' @details
-#' The site status worksheet is used to specify which management actions
-#' can potentially be applied within each site. It can be used to lock
-#' out certain management actions from certain sites.
+#' A consequence worksheet specifies the expected amount of each
+#' feature that would be expected to follow if a certain management action
+#' were implemented within each site. Note that is it assumed that the
+#' amount of each feature expected to occur within each site is independent.
+#' This function only adds a single sheet for a particular action,
+#' and so it will need to be executed multiple times for each action in
+#' a particular conservation planning exercise.
 #'
 #' @inherit add_site_data_sheet return
 #'
 #' @noRd
-add_site_status_sheet <- function(x, data, parameters) {
+add_consequence_sheet <- function(x, data, comments, action_id,
+                                         parameters) {
   # validate arguments
   assertthat::assert_that(
     inherits(x, "Workbook"),
     inherits(data, "data.frame"),
+    inherits(comments, "data.frame"),
+    identical(ncol(data), ncol(comments)),
+    identical(nrow(data), nrow(comments)),
+    assertthat::is.string(action_id), assertthat::noNA(action_id),
     is.list(parameters))
 
   # define parameters
-  p <- parameters$site_status_sheet
+  p <- parameters$consequence_sheet
   start_row <- 3
   n_message_rows <- 5
 
   # create styles
   header_style <- do.call(openxlsx::createStyle, parameters$header_style)
   label_style <- do.call(openxlsx::createStyle, parameters$label_style)
-  true_style <- do.call(openxlsx::createStyle, parameters$true_style)
-  false_style <- do.call(openxlsx::createStyle, parameters$false_style)
+  data_style <- do.call(openxlsx::createStyle, parameters$data_style)
   main_style <- do.call(openxlsx::createStyle, parameters$main_style)
   sub_style <- do.call(openxlsx::createStyle, parameters$sub_style)
 
   # create sheet
+  p$sheet_name <- as.character(glue::glue(
+    p$sheet_name, action_ids = action_id))
   openxlsx::addWorksheet(x, sheetName = p$sheet_name)
-
-  # add default styling for worksheet
-  openxlsx::protectWorksheet(x, p$sheet_name, protect = TRUE,
-    lockFormattingCells = FALSE, lockFormattingColumns = FALSE,
-    lockInsertingColumns = TRUE, lockDeletingColumns = TRUE,
-    lockInsertingRows = TRUE, lockDeletingRows = TRUE)
 
   # set up worksheet
   ## lock sheet
@@ -99,31 +103,27 @@ add_site_status_sheet <- function(x, data, parameters) {
     rows = seq_len(nrow(data)) + start_row, cols = 1,
     gridExpand = TRUE)
 
-  ## add conditional styling
+  ## style data cells
   openxlsx::addStyle(x, p$sheet_name,
-    style = openxlsx::createStyle(locked = FALSE),
-    cols = seq(2, ncol(data)), rows = seq_len(nrow(data)) + start_row,
+    style = data_style,
+    rows = seq_len(nrow(data)) + 3, cols = seq(2, ncol(data)),
     gridExpand = TRUE)
-  openxlsx::conditionalFormatting(x, p$sheet_name,
-    cols = seq(2, ncol(data)), rows = seq_len(nrow(data)) + start_row,
-    rule = "==0", style = false_style)
-  openxlsx::conditionalFormatting(x, p$sheet_name,
-    cols = seq(2, ncol(data)), rows = seq_len(nrow(data)) + start_row,
-    rule = "==1", style = true_style)
 
   # add messages
   ## main message
   openxlsx::mergeCells(x, p$sheet_name,
     cols = seq_len(n_message_rows) + 1, rows = 1)
   openxlsx::writeData(x, p$sheet_name,
-    x = data.frame(x = p$main_message, stringsAsFactors = FALSE),
+    x = data.frame(x = as.character(glue::glue(
+      p$main_message, action_ids = action_id)), stringsAsFactors = FALSE),
     startCol = 2, startRow = 1, colNames = FALSE, rowNames = FALSE)
 
   ## add sub message
   openxlsx::mergeCells(x, p$sheet_name,
     cols = seq_len(n_message_rows) + 1, rows = 2)
   openxlsx::writeData(x, p$sheet_name,
-    x = data.frame(x = p$sub_message, stringsAsFactors = FALSE),
+    x = data.frame(x = as.character(glue::glue(
+      p$sub_message, action_ids = action_id)), stringsAsFactors = FALSE),
     startCol = 2, startRow = 2, colNames = FALSE, rowNames = FALSE)
 
   # add data
@@ -132,10 +132,45 @@ add_site_status_sheet <- function(x, data, parameters) {
   # add input data validation
   openxlsx::dataValidation(x, p$sheet_name,
     rows = seq_len(nrow(data)) + start_row, cols = seq(2, ncol(data)),
-    type = "whole", operator = "between",
-    value = c(0L, 1L), allowBlank = FALSE,
+    type = "decimal", operator = "between",
+    value = c(0, 1e+4), allowBlank = FALSE,
     showInputMsg = TRUE, showErrorMsg = TRUE)
+
+  # add comments
+  ## add comments for header
+  for (i in seq_len(ncol(comments))) {
+    if (!identical(names(data)[i], names(comments)[i])) {
+      openxlsx::writeComment(
+        x,
+        sheet = p$sheet_name,
+        col = i,
+        row = start_row,
+        comment = openxlsx::createComment(
+          comment = names(comments)[i],
+          author = "X"
+        )
+      )
+    }
+  }
+  ## add comments to cells
+  for (i in seq_len(ncol(comments))) {
+    for (j in seq_len(nrow(comments))) {
+      if (!is.na(comments[[i]][[j]])) {
+        openxlsx::writeComment(
+          x,
+          sheet = p$sheet_name,
+          col = i,
+          row = start_row + j,
+          comment = openxlsx::createComment(
+            comment = comments[[i]][[j]],
+            author = "X"
+          )
+        )
+      }
+    }
+  }
 
   # return result
   x
+
 }

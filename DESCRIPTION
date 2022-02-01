@@ -32,7 +32,7 @@ Suggests:
     rmarkdown (>= 1.10),
     gurobi (>= 9.1.2),
 Depends:
-    R (>= 3.5.0),
+    R (>= 3.5.0)
 License: GPL-3
 Encoding: UTF-8
 Language: en-US
@@ -42,21 +42,24 @@ VignetteBuilder: knitr
 RoxygenNote: 7.1.2
 Collate:
     'internal.R'
-    'add_action_expectation_sheet.R'
+    'add_consequence_sheet.R'
+    'add_feasibility_data_sheet.R'
     'add_feature_data_sheet.R'
     'add_feature_results_sheet.R'
+    'add_metadata_sheet.R'
     'add_site_data_sheet.R'
     'add_site_results_sheet.R'
-    'add_site_status_sheet.R'
     'add_summary_results_sheet.R'
-    'create_export_workbook.R'
+    'create_project_workbook.R'
+    'create_solution_workbook.R'
     'create_template_workbook.R'
-    'format_data.R'
     'has_valid_spreadsheet_data.R'
     'is_valid_spreadsheet.R'
     'package.R'
     'read_data_configuration.R'
     'read_spreadsheet_data.R'
+    'simulate_project_data.R'
+    'template_comments.R'
     'template_data.R'
     'verification.R'
 Roxygen: list(markdown = TRUE)

@@ -6,11 +6,15 @@ test_that("expected result", {
   w <- openxlsx::createWorkbook()
   parameters <- read_data_configuration()
   sn <- paste0("s", seq_len(5))
+  sd <- paste0("Locality s", seq_len(5))
   fn <- paste0("f", seq_len(3))
+  fd <- paste0("Habitat for s", seq_len(3))
   an <- paste0("a", seq_len(2))
+  ad <- paste0("Action a", seq_len(2))
   dat <- template_site_data(sn, an, parameters)
+  com <- template_site_comments(sd, ad, parameters)
   # main code
-  w <- add_site_data_sheet(w, dat, parameters = parameters)
+  w <- add_site_data_sheet(w, dat, com, parameters = parameters, length(an))
   # tests
   expect_is(w, "Workbook")
   suppressWarnings(openxlsx::saveWorkbook(w, f, returnValue = FALSE))

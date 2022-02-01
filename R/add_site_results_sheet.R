@@ -9,6 +9,11 @@ NULL
 #'
 #' @param data `data.frame` object with results data.
 #'
+#' @param comments `data.frame` object with comments data.
+#' Defaults to `NULL` such that no comments are added
+#'
+#' @param parameters `list` object with parameters for saving data.
+#'
 #' @details
 #' The site data worksheet is used to specify site results from a
 #' prioritization.
@@ -16,12 +21,20 @@ NULL
 #' @return An updated `Workbook` object.
 #'
 #' @noRd
-add_site_results_sheet <- function(x, data, parameters) {
+add_site_results_sheet <- function(x, data, comments = NULL, parameters) {
+  # validate arguments
   # validate arguments
   assertthat::assert_that(
     inherits(x, "Workbook"),
     inherits(data, "data.frame"),
-    is.list(parameters))
+    is.list(parameters)
+  )
+  if (!is.null(comments)) {
+    assertthat::assert_that(
+      inherits(comments, "data.frame"),
+      identical(dim(data), dim(comments))
+    )
+  }
 
   # define parameters
   p <- parameters$site_results_sheet
@@ -115,6 +128,42 @@ add_site_results_sheet <- function(x, data, parameters) {
 
   # add data
   openxlsx::writeDataTable(x, p$sheet_name, x = data, startRow = 3)
+
+  # add comments
+  if (!is.null(comments)) {
+    ## add comments for header
+    for (i in seq_len(ncol(comments))) {
+      if (!identical(names(data)[i], names(comments)[i])) {
+        openxlsx::writeComment(
+          x,
+          sheet = p$sheet_name,
+          col = i,
+          row = start_row,
+          comment = openxlsx::createComment(
+            comment = names(comments)[i],
+            author = "X"
+          )
+        )
+      }
+    }
+    ## add comments to cells
+    for (i in seq_len(ncol(comments))) {
+      for (j in seq_len(nrow(comments))) {
+        if (!is.na(comments[[i]][[j]])) {
+          openxlsx::writeComment(
+            x,
+            sheet = p$sheet_name,
+            col = i,
+            row = start_row + j,
+            comment = openxlsx::createComment(
+              comment = comments[[i]][[j]],
+              author = "X"
+            )
+          )
+        }
+      }
+    }
+  }
 
   # return result
   x
