@@ -3,7 +3,7 @@
 
 ## whatdataio: Import and export management action data
 
-[![lifecycle](https://img.shields.io/badge/Lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/experimental)
+[![lifecycle](https://img.shields.io/badge/Lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/experimental)
 [![R-CMD-check-Ubuntu](https://img.shields.io/github/workflow/status/NCC-CNC/whatdataio/Ubuntu/master.svg?label=Ubuntu)](https://github.com/NCC-CNC/whatdataio/actions)
 [![R-CMD-check-Windows](https://img.shields.io/github/workflow/status/NCC-CNC/whatdataio/Windows/master.svg?label=Windows)](https://github.com/NCC-CNC/whatdataio/actions)
 [![R-CMD-check-Mac-OSX](https://img.shields.io/github/workflow/status/NCC-CNC/whatdataio/Mac%20OSX/master.svg?label=Mac%20OSX)](https://github.com/NCC-CNC/whatdataio/actions)
