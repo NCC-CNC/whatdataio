@@ -150,7 +150,8 @@ add_feasibility_data_sheet <- function(x, data, comments, parameters) {
         row = start_row,
         comment = openxlsx::createComment(
           comment = names(comments)[i],
-          author = "X"
+          author = "What Template Maker",
+          visible = FALSE
         )
       )
     }
@@ -166,7 +167,8 @@ add_feasibility_data_sheet <- function(x, data, comments, parameters) {
           row = start_row + j,
           comment = openxlsx::createComment(
             comment = comments[[i]][[j]],
-            author = "X"
+            author = "What Template Maker",
+            visible = FALSE
           )
         )
       }
