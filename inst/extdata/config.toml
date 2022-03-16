@@ -28,12 +28,12 @@ sub_message = "Specifically, we ask that you input data indicating which managem
 sheet_name = "Feature data"
 name_header = "Feature ID"
 goal_header = "Goal (%)"
-weight_header = "Relative importance (weight)"
+weight_header = "Relative importance"
 col_width_padding = 10
 sub_message_height = 250
 main_message_height = 20
 main_message = "Please enter information for your features into this worksheet."
-sub_message = "Specifically, we ask that you input values to specify trade-offs for managing different biodiversity elements (e.g. species, habitat types) within your conservation planning exercise. To help prioritize implementation of specific management actions in specific sites, we require percentage-based threshold values to specify the minimum amount of each feature you think is important to achieve across all of the sites (termed “goal”). Specifically, the goal values are expressed as a percentage of the maximum possible amount of each feature, assuming that the best possible action for each feature was implemented within each site (per the expecation data). To ensure that the prioritization process explicitly accounts for your objectives (i.e. what YOU think is important), you can also specify the relative importance (weight) of each feature. The default value is 1 such that all features are considered equally important. Greater values indicate greater importance. A weight of exactly 0 means that a feature is not important at all and does not “count” when comparing different conservation plans. Both goal and weight values should be between 0 and 100. Please note that these values can be changed later in the What To Do application. After filling out this worksheet, every light gray cell should have a numerical value."
+sub_message = "Specifically, we ask that you input values to specify trade-offs for managing different biodiversity elements (e.g. species, habitat types) within your conservation planning exercise. To help prioritize implementation of specific management actions in specific sites, we require percentage-based threshold values to specify the minimum amount of each feature you think is important to achieve across all of the sites (termed “goal”). Specifically, the goal values are expressed as a percentage of the maximum possible amount of each feature, assuming that the best possible action for each feature was implemented within each site (per the expecation data). To ensure that the prioritization process explicitly accounts for your objectives (i.e. what YOU think is important), you can also specify the relative importance of each feature. The default value is 1 such that all features are considered equally important. Greater values indicate greater importance. An importance value of exactly 0 means that a feature is not important at all and does not “count” when comparing different conservation plans. Both goal and importance values should be between 0 and 100. Please note that these values can be changed later in the What To Do application. After filling out this worksheet, every light gray cell should have a numerical value."
 
 [consequence_sheet]
 sheet_name = "“{action_ids}” consequence"
@@ -52,7 +52,9 @@ hidden = true
 [site_results_sheet]
 sheet_name = "Site results"
 name_header = "Site ID"
+current_header ="Current status"
 action_header = "Priority action"
+cost_header = "Cost of implementing action"
 col_width_padding = 10
 sub_message_height = 30
 main_message_height = 20
