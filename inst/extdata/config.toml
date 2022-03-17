@@ -64,9 +64,11 @@ sub_message = "This worksheet contains information on which actions were priorit
 [feature_results_sheet]
 sheet_name = "Feature results"
 name_header = "Feature ID"
-goal_header = "Goal"
-held_header = "Consequence of prioritization"
-met_header = "Goal met?"
+goal_percentage_header = "Goal (%)"
+goal_units_header = "Goal (units)"
+held_percentage_header = "Consequence of prioritization (%)"
+held_units_header = "Consequence of prioritization (units)"
+met_header = "Prioritization meets goal?"
 col_width_padding = 10
 sub_message_height = 30
 main_message_height = 20
