@@ -30,7 +30,7 @@ template_site_data <- function(site_ids, action_ids, parameters,
     site_id = site_ids,
     longitude = site_longitudes,
     latitude = site_latitudes,
-    status = ""
+    status = rep(site_ids[[1]], length(site_ids))
   )
   names(d) <- c(
     p$name_header, p$longitude_header, p$latitude_header, p$status_header

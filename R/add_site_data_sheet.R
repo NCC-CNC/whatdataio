@@ -144,10 +144,10 @@ add_site_data_sheet <- function(x, data, comments, parameters, n_actions) {
   ## status column
   suppressWarnings(
     openxlsx::dataValidation(x, p$sheet_name,
-      rows = seq_len(nrow(data)) + start_row, cols = 4,
-      type = "list", operator = "between",
-      value = paste0("'meta'!$B$2:$B$", n_actions + 1),
-      allowBlank = TRUE, showInputMsg = TRUE, showErrorMsg = TRUE
+      rows = seq_len(nrow(data)) + start_row, col = 4,
+      type = "list",
+      value = paste0("'metadata'!$B$2:$B$", n_actions + 1),
+      allowBlank = FALSE, showInputMsg = TRUE, showErrorMsg = TRUE
     )
   )
 
